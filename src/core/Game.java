@@ -2,8 +2,6 @@ package core;
 
 import static core.Const.*;
 
-import javax.swing.plaf.synth.SynthStyle;
-
 import core.Const.STATE;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -13,8 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -23,10 +19,10 @@ public class Game extends Application {
     private boolean loop = true;
 
     private void menu(Stage stage) {
+        stage.setTitle("Menu");
+
         Group root = new Group();
         Scene scene = new Scene(root);
-
-        stage.setTitle("Menu");
 
         menuSound.play();
 
@@ -56,14 +52,26 @@ public class Game extends Application {
 
     private void player(Stage stage) {
         stage.setTitle("Player");
+        Group root = new Group();
+        Scene scene = new Scene(root);
 
         Canvas canvas = new Canvas(WIDTH, HEIGHT);
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.setFill(Color.RED);
+        gc.setFill(Color.BLUE);
         gc.fillRect(0, 0, WIDTH, HEIGHT);
 
-        Group root = new Group(canvas);
-        Scene scene = new Scene(root);
+        Button buttonBack = new Button("Back");
+        buttonBack.setLayoutX(500);
+        buttonBack.setLayoutY(500);
+        buttonBack.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
+        buttonBack.setStyle("-fx-background-color: black;");
+        buttonBack.setOnAction(e -> {
+            gameState = STATE.MENU;
+            gameLoop(stage);
+        });
+
+        root.getChildren().add(canvas);
+        root.getChildren().add(buttonBack);
         stage.setScene(scene);
         stage.show();
     }

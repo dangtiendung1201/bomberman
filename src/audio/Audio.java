@@ -4,11 +4,9 @@ import javax.sound.sampled.*;
 import java.io.File;
 
 public class Audio {
-    private String path;
     private Clip clip;
 
     public void setPath(String path) {
-        this.path = path;
         try {
             File file = new File(path);
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
