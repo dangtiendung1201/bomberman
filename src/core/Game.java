@@ -2,6 +2,8 @@ package core;
 
 import static core.Const.*;
 
+import javax.swing.plaf.synth.SynthStyle;
+
 import core.Const.STATE;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -11,20 +13,22 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.Effect;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Game extends Application {
+
     private boolean loop = true;
 
     private void menu(Stage stage) {
+        Group root = new Group();
+        Scene scene = new Scene(root);
+
         stage.setTitle("Menu");
+
+        menuSound.play();
 
         buttonPlayer.setOnAction(e -> {
             gameState = STATE.PLAYER;
@@ -41,11 +45,11 @@ public class Game extends Application {
             gameLoop(stage);
         });
 
-        Group root = new Group(menuImage);
+        root.getChildren().add(menuImage);
         root.getChildren().add(buttonPlayer);
         root.getChildren().add(buttonComputer);
         root.getChildren().add(buttonExit);
-        Scene scene = new Scene(root);
+
         stage.setScene(scene);
         stage.show();
     }

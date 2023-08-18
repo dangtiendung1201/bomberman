@@ -1,5 +1,8 @@
 package core;
 
+import input.*;
+import audio.*;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,12 +11,13 @@ import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 
 public class Const {
     public static final int WIDTH = 1200;
     public static final int HEIGHT = 600;
     public static final String TITLE = "Bomberman";
+
+    public static KeyListener keyListener;
 
     public enum STATE {
         MENU,
@@ -44,6 +48,8 @@ public class Const {
     public static final int BUTTON_EXIT_START_Y = 524;
     public static final Button buttonExit = new Button("");
 
+    public static Audio menuSound = new Audio();
+
     public static void loadMenu() {
         buttonPlayer.setLayoutX(BUTTON_PLAYER_START_X);
         buttonPlayer.setLayoutY(BUTTON_PLAYER_START_Y);
@@ -54,7 +60,6 @@ public class Const {
         });
         buttonPlayer.setOnMouseExited(e -> {
             buttonPlayer.setStyle("-fx-background-color: transparent;");
-
         });
 
         buttonComputer.setLayoutX(BUTTON_COMPUTER_START_X);
@@ -67,7 +72,6 @@ public class Const {
         });
         buttonComputer.setOnMouseExited(e -> {
             buttonComputer.setStyle("-fx-background-color: transparent;");
-
         });
 
         buttonExit.setLayoutX(BUTTON_EXIT_START_X);
@@ -80,8 +84,9 @@ public class Const {
         });
         buttonExit.setOnMouseExited(e -> {
             buttonExit.setStyle("-fx-background-color: transparent;");
-
         });
-    }
 
+        menuSound.setPath("res/music/menu.wav");
+        menuSound.setLoop(true);
+    }
 }
