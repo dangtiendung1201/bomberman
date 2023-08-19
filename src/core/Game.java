@@ -2,6 +2,10 @@ package core;
 
 import static core.Const.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 import core.Const.STATE;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -11,11 +15,16 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Game extends Application {
 
+    private int lvl;
+    private int row;
+    private int col;
+    private char[][] map;
     private boolean loop = true;
 
     private void menu(Stage stage) {
@@ -50,28 +59,107 @@ public class Game extends Application {
         stage.show();
     }
 
+    private void renderMap(String path) throws FileNotFoundException {
+        // read map from file Level1.txt
+        File file = new File(path);
+        try (Scanner sc = new Scanner(file)) {
+            lvl = sc.nextInt();
+            row = sc.nextInt();
+            col = sc.nextInt();
+
+            map = new char[row][col];
+
+            for (int i = 0; i < row; i++) {
+                String line = sc.nextLine();
+
+                if (line.isEmpty()) {
+                    i--;
+                    continue;
+                }
+
+                for (int j = 0; j < col; j++) {
+                    map[i][j] = line.charAt(j);
+                    // System.out.print(map[i][j]);
+                }
+
+                // System.out.println();
+            }
+        }
+    }
+
     private void player(Stage stage) {
         stage.setTitle("Player");
         Group root = new Group();
         Scene scene = new Scene(root);
 
         Canvas canvas = new Canvas(WIDTH, HEIGHT);
+
+        try {
+            renderMap("res/levels/Level1.txt");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        // render balloom in screen
+        // for (int i = 0; i < row; i++) {
+        // for (int j = 0; j < col; j++) {
+        // switch (map[i][j]) {
+        // case '#':
+        // gc.drawImage(wallImage, j * SIZE, i * SIZE);
+        // break;
+        // case '*':
+        // gc.drawImage(brickImage, j * SIZE, i * SIZE);
+        // break;
+        // case 'x':
+        // gc.drawImage(bombImage, j * SIZE, i * SIZE);
+        // break;
+        // case 'p':
+        // gc.drawImage(playerImage, j * SIZE, i * SIZE);
+        // break;
+        // case '1':
+        // gc.drawImage(balloomImage, j * SIZE, i * SIZE);
+        // break;
+        // case '2':
+        // gc.drawImage(onealImage, j * SIZE, i * SIZE);
+        // break;
+        // case '3':
+        // gc.drawImage(dollImage, j * SIZE, i * SIZE);
+        // break;
+        // case '4':
+        // gc.drawImage(minvoImage, j * SIZE, i * SIZE);
+        // break;
+        // case '5':
+        // gc.drawImage(kondoriaImage, j * SIZE, i * SIZE);
+        // break;
+        // case '6':
+        // gc.drawImage(ovapiImage, j * SIZE, i * SIZE);
+        // break;
+        // case '7':
+        // gc.drawImage(passImage, j * SIZE, i * SIZE);
+        // break;
+        // case '8':
+        // gc.drawImage(pontanImage, j * SIZE, i * SIZE);
+        // break;
+        // case '9':
+        // gc.drawImage(dahlImage, j * SIZE, i * SIZE);
+        // break;
+        // case '0':
+        // gc.drawImage(dahlImage, j * SIZE, i * SIZE);
+        // break;
+        // default:
+        // break;
+        // }
+        // }
+        // }
+
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.setFill(Color.BLUE);
-        gc.fillRect(0, 0, WIDTH, HEIGHT);
+        gc.drawImage(testImage, 50, 50, 100, 100);
 
-        Button buttonBack = new Button("Back");
-        buttonBack.setLayoutX(500);
-        buttonBack.setLayoutY(500);
-        buttonBack.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-        buttonBack.setStyle("-fx-background-color: black;");
-        buttonBack.setOnAction(e -> {
-            gameState = STATE.MENU;
-            gameLoop(stage);
-        });
-
+        // display red screen
+        // gc.setFill(Color.RED);
+        // gc.fillRect(0, 0, 100, 100);
+        root.getChildren().add(menuImage);
         root.getChildren().add(canvas);
-        root.getChildren().add(buttonBack);
         stage.setScene(scene);
         stage.show();
     }
@@ -125,6 +213,7 @@ public class Game extends Application {
     @Override
     public void start(Stage stage) {
         loadAssets();
+        loadEnemy();
 
         AnimationTimer timer = new AnimationTimer() {
             @Override
