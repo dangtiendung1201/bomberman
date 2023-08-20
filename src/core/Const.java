@@ -87,7 +87,9 @@ public class Const {
         menuSound.setLoop(true);
     }
 
-    public static final Image testImage = new Image("file:src/core/test.png");
+    public static final int OBJECT_SIZE = 35;
+    public static final int OFFSET_STATUS_BAR = 60;
+    public static final int OFFSET_MAP = 660;
 
     public static final Image[] onealImage = new Image[7];
     public static final Image[] balloomImage = new Image[7];

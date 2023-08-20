@@ -61,6 +61,7 @@ public class Game extends Application {
         Group root = new Group();
         Scene scene = new Scene(root);
         Canvas canvas = new Canvas(WIDTH, HEIGHT);
+        GraphicsContext gc = canvas.getGraphicsContext2D();
 
         try {
             map = new Map();
@@ -69,68 +70,9 @@ public class Game extends Application {
             e.printStackTrace();
         }
 
-        map.print();
+        map.render(gc);
 
-        // render balloom in screen
-        // for (int i = 0; i < row; i++) {
-        // for (int j = 0; j < col; j++) {
-        // switch (map[i][j]) {
-        // case '#':
-        // gc.drawImage(wallImage, j * SIZE, i * SIZE);
-        // break;
-        // case '*':
-        // gc.drawImage(brickImage, j * SIZE, i * SIZE);
-        // break;
-        // case 'x':
-        // gc.drawImage(bombImage, j * SIZE, i * SIZE);
-        // break;
-        // case 'p':
-        // gc.drawImage(playerImage, j * SIZE, i * SIZE);
-        // break;
-        // case '1':
-        // gc.drawImage(balloomImage, j * SIZE, i * SIZE);
-        // break;
-        // case '2':
-        // gc.drawImage(onealImage, j * SIZE, i * SIZE);
-        // break;
-        // case '3':
-        // gc.drawImage(dollImage, j * SIZE, i * SIZE);
-        // break;
-        // case '4':
-        // gc.drawImage(minvoImage, j * SIZE, i * SIZE);
-        // break;
-        // case '5':
-        // gc.drawImage(kondoriaImage, j * SIZE, i * SIZE);
-        // break;
-        // case '6':
-        // gc.drawImage(ovapiImage, j * SIZE, i * SIZE);
-        // break;
-        // case '7':
-        // gc.drawImage(passImage, j * SIZE, i * SIZE);
-        // break;
-        // case '8':
-        // gc.drawImage(pontanImage, j * SIZE, i * SIZE);
-        // break;
-        // case '9':
-        // gc.drawImage(dahlImage, j * SIZE, i * SIZE);
-        // break;
-        // case '0':
-        // gc.drawImage(dahlImage, j * SIZE, i * SIZE);
-        // break;
-        // default:
-        // break;
-        // }
-        // }
-        // }
-
-        // render Image
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.drawImage(portalImage, 50, 50, 100, 100);
-
-        // display red screen
-        // gc.setFill(Color.RED);
-        // gc.fillRect(0, 0, 100, 100);
-        root.getChildren().add(blankImage);
+        
         root.getChildren().add(canvas);
         stage.setScene(scene);
         stage.show();
