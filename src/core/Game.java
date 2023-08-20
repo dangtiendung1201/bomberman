@@ -1,6 +1,7 @@
 package core;
 
 import static core.Const.*;
+import map.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -20,12 +21,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Game extends Application {
-
-    private int lvl;
-    private int row;
-    private int col;
-    private char[][] map;
     private boolean loop = true;
+    private Map map;
 
     private void menu(Stage stage) {
         stage.setTitle("Menu");
@@ -59,46 +56,20 @@ public class Game extends Application {
         stage.show();
     }
 
-    private void renderMap(String path) throws FileNotFoundException {
-        // read map from file Level1.txt
-        File file = new File(path);
-        try (Scanner sc = new Scanner(file)) {
-            lvl = sc.nextInt();
-            row = sc.nextInt();
-            col = sc.nextInt();
-
-            map = new char[row][col];
-
-            for (int i = 0; i < row; i++) {
-                String line = sc.nextLine();
-
-                if (line.isEmpty()) {
-                    i--;
-                    continue;
-                }
-
-                for (int j = 0; j < col; j++) {
-                    map[i][j] = line.charAt(j);
-                    // System.out.print(map[i][j]);
-                }
-
-                // System.out.println();
-            }
-        }
-    }
-
     private void player(Stage stage) {
         stage.setTitle("Player");
         Group root = new Group();
         Scene scene = new Scene(root);
-
         Canvas canvas = new Canvas(WIDTH, HEIGHT);
 
         try {
-            renderMap("res/levels/Level1.txt");
+            map = new Map();
+            map.read("res/levels/level1.txt");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
+        map.print();
 
         // render balloom in screen
         // for (int i = 0; i < row; i++) {
@@ -152,13 +123,14 @@ public class Game extends Application {
         // }
         // }
 
+        // render Image
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.drawImage(testImage, 50, 50, 100, 100);
+        gc.drawImage(portalImage, 50, 50, 100, 100);
 
         // display red screen
         // gc.setFill(Color.RED);
         // gc.fillRect(0, 0, 100, 100);
-        root.getChildren().add(menuImage);
+        root.getChildren().add(blankImage);
         root.getChildren().add(canvas);
         stage.setScene(scene);
         stage.show();

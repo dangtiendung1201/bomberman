@@ -25,9 +25,11 @@ public class Const {
 
     public static final int FPS = 60;
 
+    public static final ImageView blankImage = new ImageView(new Image("file:res/blank.png"));
+
     public static final ImageView menuImage = new ImageView(new Image("file:res/menu.png"));
 
-    // Menu buttons
+    // Menusun.swing.table
     public static final int BUTTON_WIDTH = 228;
     public static final int BUTTON_HEIGHT = 70;
 
@@ -85,7 +87,6 @@ public class Const {
         menuSound.setLoop(true);
     }
 
-    // public static final ImageView testImage = new ImageView(new Image("file:src/core/test.png"));
     public static final Image testImage = new Image("file:src/core/test.png");
 
     public static final Image[] onealImage = new Image[7];
@@ -95,36 +96,36 @@ public class Const {
     public static final Image[] kondoriaImage = new Image[7];
     public static final Image[] ovapiImage = new Image[7];
 
-    public static final Image grassImage = new Image("file:res/grass.png");
-    public static final Image portalImage = new Image("file:res/portal.png");
-    public static final Image wallImage = new Image("file:res/wall.png");
+    public static final Image grassImage = new Image("file:res/sprites/grass.png");
+    public static final Image portalImage = new Image("file:res/sprites/portal.png");
+    public static final Image wallImage = new Image("file:res/sprites/wall.png");
 
     public static void loadEnemy() {
         for (int i = 0; i < 7; i++) {
             if (i == 0) {
-                onealImage[i] = new Image("file:res/oneal" + "dead" + ".png");
-                balloomImage[i] = new Image("file:res/balloom" + "dead" + ".png");
-                dollImage[i] = new Image("file:res/doll" + "dead" + ".png");
-                minvoImage[i] = new Image("file:res/minvo" + "dead" + ".png");
-                kondoriaImage[i] = new Image("file:res/kondoria" + "dead" + ".png");
-                ovapiImage[i] = new Image("file:res/ovapi" + "dead" + ".png");
+                onealImage[i] = new Image("file:res/sprites/oneal" + "dead" + ".png");
+                balloomImage[i] = new Image("file:res/sprites/balloom" + "dead" + ".png");
+                dollImage[i] = new Image("file:res/sprites/doll" + "dead" + ".png");
+                minvoImage[i] = new Image("file:res/sprites/minvo" + "dead" + ".png");
+                kondoriaImage[i] = new Image("file:res/sprites/kondoria" + "dead" + ".png");
+                ovapiImage[i] = new Image("file:res/sprites/ovapi" + "dead" + ".png");
             } else if (1 <= i && i <= 3) {
-                onealImage[i] = new Image("file:res/oneal" + "left" + Integer.toString(i) + ".png");
-                balloomImage[i] = new Image("file:res/balloom" + "left" + Integer.toString(i) + ".png");
-                dollImage[i] = new Image("file:res/doll" + "left" + Integer.toString(i) + ".png");
-                minvoImage[i] = new Image("file:res/minvo" + "left" + Integer.toString(i) + ".png");
+                onealImage[i] = new Image("file:res/sprites/oneal" + "left" + Integer.toString(i) + ".png");
+                balloomImage[i] = new Image("file:res/sprites/balloom" + "left" + Integer.toString(i) + ".png");
+                dollImage[i] = new Image("file:res/sprites/doll" + "left" + Integer.toString(i) + ".png");
+                minvoImage[i] = new Image("file:res/sprites/minvo" + "left" + Integer.toString(i) + ".png");
                 kondoriaImage[i] = 
-                        new Image("file:res/kondoria" + "left" + Integer.toString(i) + ".png");
-                ovapiImage[i] = new Image("file:res/ovapi" + "left" + Integer.toString(i) + ".png");
+                        new Image("file:res/sprites/kondoria" + "left" + Integer.toString(i) + ".png");
+                ovapiImage[i] = new Image("file:res/sprites/ovapi" + "left" + Integer.toString(i) + ".png");
             } else {
-                onealImage[i] = new Image("file:res/oneal" + "right" + Integer.toString(i - 3) + ".png");
+                onealImage[i] = new Image("file:res/sprites/oneal" + "right" + Integer.toString(i - 3) + ".png");
                 balloomImage[i] = 
-                        new Image("file:res/balloom" + "right" + Integer.toString(i - 3) + ".png");
-                dollImage[i] = new Image("file:res/doll" + "right" + Integer.toString(i - 3) + ".png");
-                minvoImage[i] = new Image("file:res/minvo" + "right" + Integer.toString(i - 3) + ".png");
+                        new Image("file:res/sprites/balloom" + "right" + Integer.toString(i - 3) + ".png");
+                dollImage[i] = new Image("file:res/sprites/doll" + "right" + Integer.toString(i - 3) + ".png");
+                minvoImage[i] = new Image("file:res/sprites/minvo" + "right" + Integer.toString(i - 3) + ".png");
                 kondoriaImage[i] = 
-                        new Image("file:res/kondoria" + "right" + Integer.toString(i - 3) + ".png");
-                ovapiImage[i] = new Image("file:res/ovapi" + "right" + Integer.toString(i - 3) + ".png");
+                        new Image("file:res/sprites/kondoria" + "right" + Integer.toString(i - 3) + ".png");
+                ovapiImage[i] = new Image("file:res/sprites/ovapi" + "right" + Integer.toString(i - 3) + ".png");
             }
         }
     }
