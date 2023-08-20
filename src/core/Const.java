@@ -21,6 +21,13 @@ public class Const {
         EXIT
     }
 
+    public enum DIRECTION {
+        UP,
+        DOWN,
+        LEFT,
+        RIGHT
+    }
+
     public static STATE gameState = STATE.MENU;
 
     public static final int FPS = 60;
