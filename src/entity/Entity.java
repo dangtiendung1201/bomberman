@@ -1,12 +1,12 @@
-package object;
+package entity;
 
-import core.Const.*;
+import static core.Const.*;
 import javafx.scene.canvas.GraphicsContext;
 
 public abstract class Entity {
-    private boolean visible;
-    private double x;
-    private double y;
+    protected boolean visible;
+    protected double x;
+    protected double y;
 
     public Entity() {
         visible = true;
@@ -48,6 +48,11 @@ public abstract class Entity {
 
     public void setY(double y) {
         this.y = y;
+    }
+
+    public boolean checkCollision(Entity other) {
+        return (x < other.x + OBJECT_SIZE && x + OBJECT_SIZE > other.x && y < other.y + OBJECT_SIZE
+                && y + OBJECT_SIZE > other.y);
     }
 
     public abstract void render(GraphicsContext gc);

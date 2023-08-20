@@ -6,6 +6,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import entity.Entity;
+import entity.Grass;
+import entity.Wall;
+import entity.character.Bomber;
+import input.KeyListener;
+import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
 
 public class Map {
@@ -49,45 +55,18 @@ public class Map {
         }
     }
 
-    public void render(GraphicsContext gc) {
+    public void setup() {
+        stiilEntities = new Entity[row][col];
+
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
-
-                // switch (map[i][j]) {
-                // case '#':
-                // gc.drawImage(wallImage, j * OBJECT_SIZE, OFFSET_STATUS_BAR + i * OBJECT_SIZE,
-                // OBJECT_SIZE, OBJECT_SIZE);
-                // break;
-                // case '*':
-                // gc.drawImage(brickImage, j * SIZE, i * SIZE);
-                // break;
-                // case 'x':
-                // gc.drawImage(bombImage, j * SIZE, i * SIZE);
-                // break;
-                // case 'p':
-                // gc.drawImage(playerImage, j * SIZE, i * SIZE);
-                // break;
-                // case '1':
-                // gc.drawImage(balloomImage, j * SIZE, i * SIZE);
-                // break;
-                // case '2':
-                // gc.drawImage(onealImage, j * SIZE, i * SIZE);
-                // break;
-                // case '3':
-                // gc.drawImage(dollImage, j * SIZE, i * SIZE);
-                // break;
-                // case '4':
-                // gc.drawImage(minvoImage, j * SIZE, i * SIZE);
-                // break;
-                // case '5':
-                // gc.drawImage(kondoriaImage, j * SIZE, i * SIZE);
-                // break;
-                // case '6':
-                // gc.drawImage(ovapiImage, j * SIZE, i * SIZE);
-                // break;
-                // case '7':
-                // gc.drawImage(passImage, j * SIZE, i * SIZE);
-                // break;
+                if (map[i][j] == '#') {
+                    stiilEntities[i][j] = new Wall(j * OBJECT_SIZE, OFFSET_STATUS_BAR + i * OBJECT_SIZE);
+                } else if (map[i][j] == 'p') {
+                    bomber = new Bomber(j * OBJECT_SIZE, OFFSET_STATUS_BAR + i * OBJECT_SIZE);
+                } else {
+                    stiilEntities[i][j] = new Grass(j * OBJECT_SIZE, OFFSET_STATUS_BAR + i * OBJECT_SIZE);
+                }
             }
         }
     }

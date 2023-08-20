@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import core.Const.STATE;
+import input.KeyListener;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -56,12 +57,27 @@ public class Game extends Application {
         stage.show();
     }
 
+    public void render(GraphicsContext gc, KeyListener keyListener) {
+        for (int i = 0; i < stiilEntities.length; i++) {
+            for (int j = 0; j < stiilEntities[i].length; j++) {
+                if (stiilEntities[i][j] != null) {
+                    stiilEntities[i][j].render(gc);
+                }
+            }
+        }
+
+        bomber.move(keyListener);
+        bomber.render(gc);
+
+    }
+
     private void player(Stage stage) {
         stage.setTitle("Player");
         Group root = new Group();
         Scene scene = new Scene(root);
         Canvas canvas = new Canvas(WIDTH, HEIGHT);
         GraphicsContext gc = canvas.getGraphicsContext2D();
+        KeyListener keyListener = new KeyListener(scene);
 
         try {
             map = new Map();
@@ -70,11 +86,35 @@ public class Game extends Application {
             e.printStackTrace();
         }
 
-        map.render(gc);
+        map.setup();
 
-        
         root.getChildren().add(canvas);
         stage.setScene(scene);
+
+        // lock fps to 60
+
+        AnimationTimer timer = new AnimationTimer() {
+            private long lastUpdate = 0;
+
+            @Override
+            public void handle(long now) {
+                // show FPS
+                // System.out.println(1000000000 / (now - lastUpdate));
+                render(gc, keyListener);
+
+                long frameTime = (now - lastUpdate) / 1000000;
+                stage.setTitle("FPS: " + 1000 / frameTime);
+                if (frameTime < FPS) {
+                    try {
+                        Thread.sleep(FPS - frameTime);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                lastUpdate = System.nanoTime();
+            }
+        };
+        timer.start();
         stage.show();
     }
 
