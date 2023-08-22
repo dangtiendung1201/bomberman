@@ -1,11 +1,10 @@
 package core;
 
 import static core.Const.*;
+import static graphic.UserInterfere.*;
 import map.*;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
 
 import core.Const.STATE;
 import input.KeyListener;
@@ -17,13 +16,11 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Game extends Application {
     private boolean loop = true;
-    private Map map;
 
     private void menu(Stage stage) {
         stage.setTitle("Menu");
@@ -57,27 +54,28 @@ public class Game extends Application {
         stage.show();
     }
 
-    public void render(GraphicsContext gc, KeyListener keyListener) {
-        for (int i = 0; i < stiilEntities.length; i++) {
-            for (int j = 0; j < stiilEntities[i].length; j++) {
-                if (stiilEntities[i][j] != null) {
-                    stiilEntities[i][j].render(gc);
+    private void update() {
+        bomberPos.update();
+    }
+
+    private void render(GraphicsContext gc) {
+        gc.clearRect(0, 0, WIDTH, HEIGHT);
+
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (wallPos[i][j] != null) {
+                    wallPos[i][j].render(gc);
                 }
             }
         }
 
-        bomber.move(keyListener);
-        bomber.render(gc);
-
+        bomberPos.render(gc);
     }
 
     private void player(Stage stage) {
+
         stage.setTitle("Player");
-        Group root = new Group();
-        Scene scene = new Scene(root);
-        Canvas canvas = new Canvas(WIDTH, HEIGHT);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        KeyListener keyListener = new KeyListener(scene);
+        Map map = null;
 
         try {
             map = new Map();
@@ -85,33 +83,52 @@ public class Game extends Application {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        
+        Group root = new Group();
+        Scene scene = new Scene(root);
+        Canvas canvas = new Canvas(WIDTH, HEIGHT);
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        KeyListener keyListener = new KeyListener(scene);
 
-        map.setup();
+        map.init(keyListener);
+        map.print();
+
+        // for (int i = 0; i < row; i++) {
+        //     for (int j = 0; j < col; j++) {
+        //         if (wallPos[i][j] != null) {
+        //             System.out.print("W");
+        //         }
+        //         else {
+        //             System.out.print(" ");
+        //         }
+        //     }
+        //     System.out.println();
+        // }
 
         root.getChildren().add(canvas);
         stage.setScene(scene);
 
-        // lock fps to 60
-
         AnimationTimer timer = new AnimationTimer() {
-            private long lastUpdate = 0;
 
             @Override
             public void handle(long now) {
-                // show FPS
-                // System.out.println(1000000000 / (now - lastUpdate));
-                render(gc, keyListener);
+                long frameStart = System.nanoTime();
+                // System.out.println(frameStart);
 
-                long frameTime = (now - lastUpdate) / 1000000;
-                stage.setTitle("FPS: " + 1000 / frameTime);
-                if (frameTime < FPS) {
+                update();
+                render(gc);
+
+                long frameTime = System.nanoTime() - frameStart;
+                // System.out.println(frameTime);
+                if (frameTime / 1000000 < DELAY_TIME) {
                     try {
-                        Thread.sleep(FPS - frameTime);
+                        Thread.sleep(DELAY_TIME - frameTime / 1000000);
+
+                        stage.setTitle(TITLE + " | FPS: " + 1000 / (DELAY_TIME - frameTime / 1000000));
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
                 }
-                lastUpdate = System.nanoTime();
             }
         };
         timer.start();
@@ -162,12 +179,12 @@ public class Game extends Application {
 
     private void loadAssets() {
         loadMenu();
+        loadPlay();
     }
 
     @Override
     public void start(Stage stage) {
         loadAssets();
-        loadEnemy();
 
         AnimationTimer timer = new AnimationTimer() {
             @Override

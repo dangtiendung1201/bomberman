@@ -1,59 +1,29 @@
 package entity;
 
 import static core.Const.*;
+import graphic.Sprite;
 import javafx.scene.canvas.GraphicsContext;
 
 public abstract class Entity {
-    protected boolean visible;
-    protected double x;
-    protected double y;
+    protected int x;
+    protected int y;
+    protected int cur;
+    protected Sprite[] sprite;
 
-    public Entity() {
-        visible = true;
-        x = 0;
-        y = 0;
-    }
-
-    public Entity(double x, double y) {
-        visible = true;
+    public Entity(int x, int y) {
         this.x = x;
         this.y = y;
+        cur = 0;
     }
 
-    public Entity(double x, double y, boolean visible) {
-        this.visible = visible;
+    public Entity(int x, int y, Sprite[] sprite) {
         this.x = x;
         this.y = y;
+        cur = 0;
+        this.sprite = sprite;
     }
 
-    public boolean isVisible() {
-        return visible;
+    public void render(GraphicsContext gc) {
+        gc.drawImage(sprite[cur].FxImage, y * OBJECT_SIZE, OFFSET_STATUS_BAR + x * OBJECT_SIZE);
     }
-
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public void setVisible(boolean visible) {
-        this.visible = visible;
-    }
-
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
-
-    public boolean checkCollision(Entity other) {
-        return (x < other.x + OBJECT_SIZE && x + OBJECT_SIZE > other.x && y < other.y + OBJECT_SIZE
-                && y + OBJECT_SIZE > other.y);
-    }
-
-    public abstract void render(GraphicsContext gc);
 }

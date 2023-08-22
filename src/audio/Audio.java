@@ -29,4 +29,8 @@ public class Audio {
             clip.loop(0);
         }
     }
+
+    public void stop() {
+        clip.stop();
+    }
 }

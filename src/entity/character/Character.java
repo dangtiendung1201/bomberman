@@ -1,23 +1,26 @@
 package entity.character;
 
-import entity.*;
+import core.Const.DIRECTION;
+import entity.Entity;
+import graphic.Sprite;
 import input.KeyListener;
-import javafx.scene.canvas.GraphicsContext;
 
 public abstract class Character extends Entity {
-    public Character() {
-        super();
-    }
-
-    public Character(double x, double y) {
+    protected KeyListener keyListener;
+    protected DIRECTION direction;
+    protected int speed;
+    protected boolean isMoving = false;
+    public Character(int x, int y) {
         super(x, y);
     }
-
-    public Character(double x, double y, boolean visible) {
-        super(x, y, visible);
+    public Character(int x, int y, Sprite[] sprite, KeyListener keyListener) {
+        super(x, y, sprite);
+        this.keyListener = keyListener;
     }
 
-    public abstract void init(double x, double y);
-    public abstract void move(KeyListener keyListener);
-    public abstract void render(GraphicsContext gc);
+    protected void setDirection(DIRECTION direction) {
+        this.direction = direction;
+    }
+
+    public abstract void update();
 }
