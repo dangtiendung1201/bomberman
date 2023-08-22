@@ -71,6 +71,10 @@ public class Game extends Application {
                     wallPos[i][j].render(gc);
                 }
 
+                if (itemPos[i][j] != null) {
+                    itemPos[i][j].render(gc);
+                }
+
                 if (brickPos[i][j] != null) {
                     brickPos[i][j].render(gc);
                 }

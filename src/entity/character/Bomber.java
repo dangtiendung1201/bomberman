@@ -69,6 +69,15 @@ public class Bomber extends Character {
         maxBomb++;
     }
 
+    private void checkItem(int x, int y) {
+        if (itemPos[x][y] != null) {
+            if (itemPos[x][y].getType() == 0) {
+                increaseMaxBomb();
+            }
+            itemPos[x][y] = null;
+        }
+    }
+
     public void update() {
         if (keyListener.isPressed(KeyCode.UP)) {
             setDirection(DIRECTION.UP);
@@ -112,6 +121,8 @@ public class Bomber extends Character {
             isMoving = false;
             cur = 0;
         }
-        System.out.println(x + " " + y);
+        
+        checkItem(x, y);
+        System.out.println("x: " + x + " y: " + y);
     }
 }
