@@ -10,7 +10,7 @@ import input.KeyListener;
 import javafx.scene.input.KeyCode;
 
 public class Bomber extends Character {
-    private int maxBomb = 5;
+    private int maxBomb = 1;
     private int cntBomb;
     private Bomb[] bomb = new Bomb[maxBomb];
 
@@ -63,6 +63,10 @@ public class Bomber extends Character {
         }
 
         return false;
+    }
+
+    private void increaseMaxBomb() {
+        maxBomb++;
     }
 
     public void update() {

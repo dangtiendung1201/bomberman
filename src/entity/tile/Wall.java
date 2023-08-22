@@ -1,6 +1,5 @@
 package entity.tile;
 
-import entity.Entity;
 import graphic.Sprite;
 
 public class Wall extends Tile{

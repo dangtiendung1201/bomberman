@@ -213,6 +213,9 @@ public class Sprite {
     public static Sprite bombpassImage = new Sprite(DEFAULT_SIZE, 5, 10, SpriteSheet.tiles, 16, 16);
     public static Sprite flamepassImage = new Sprite(DEFAULT_SIZE, 6, 10, SpriteSheet.tiles, 16, 16);
 
+    public static Sprite[] itemImage = { bombsImage, flamesImage, speedImage, wallpassImage, detonatorImage,
+            bombpassImage, flamepassImage };
+
     public Image FxImage;
 
     public Sprite(int size, int x, int y, SpriteSheet sheet, int rw, int rh) {

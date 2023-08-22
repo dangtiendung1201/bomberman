@@ -4,6 +4,8 @@ import static core.Const.*;
 import static graphic.Sprite.*;
 
 import entity.character.Bomber;
+import entity.item.BombsItem;
+import entity.item.Item;
 import entity.tile.Brick;
 import entity.tile.Grass;
 import entity.tile.Wall;
@@ -48,6 +50,9 @@ public class Map {
         grassPos = new Grass[row][col];
         wallPos = new Wall[row][col];
         brickPos = new Brick[row][col];
+        itemPos = new Item[row][col];
+
+        itemPos[1][2] = new BombsItem(1, 2, itemImage);
 
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
