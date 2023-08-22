@@ -4,6 +4,7 @@ import static core.Const.*;
 import static graphic.Sprite.*;
 
 import entity.character.Bomber;
+import entity.tile.Brick;
 import entity.tile.Grass;
 import entity.tile.Wall;
 import input.KeyListener;
@@ -46,6 +47,7 @@ public class Map {
     public void init(KeyListener keyListener) {
         grassPos = new Grass[row][col];
         wallPos = new Wall[row][col];
+        brickPos = new Brick[row][col];
 
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
@@ -55,6 +57,9 @@ public class Map {
                     wallPos[i][j] = new Wall(i, j, wallImage);
                 } else if (map[i][j] == 'p') {
                     bomberPos = new Bomber(i, j, bomberImage, keyListener);
+                }
+                else if (map[i][j] == '*') {
+                    brickPos[i][j] = new Brick(i, j, brickImage);
                 }
             }
         }

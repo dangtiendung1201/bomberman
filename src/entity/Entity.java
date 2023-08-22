@@ -16,6 +16,14 @@ public abstract class Entity {
         cur = 0;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
     public Entity(int x, int y, Sprite[] sprite) {
         this.x = x;
         this.y = y;

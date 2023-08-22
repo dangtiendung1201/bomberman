@@ -70,6 +70,17 @@ public class Game extends Application {
                 if (wallPos[i][j] != null) {
                     wallPos[i][j].render(gc);
                 }
+
+                if (brickPos[i][j] != null) {
+                    brickPos[i][j].render(gc);
+                }
+
+            }
+        }
+
+        for (int i = 0; i < bomberPos.getBomb().length; i++) {
+            if (bomberPos.getBomb()[i] != null) {
+                bomberPos.getBomb()[i].render(gc);
             }
         }
 
