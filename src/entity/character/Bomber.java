@@ -3,7 +3,6 @@ package entity.character;
 import static core.Const.*;
 
 import core.Const.DIRECTION;
-import entity.tile.Wall;
 import graphic.Sprite;
 import input.KeyListener;
 import javafx.scene.input.KeyCode;
@@ -27,7 +26,6 @@ public class Bomber extends Character {
 
         if (wallPos[x][y] != null)
             return true;
-        // System.out.println(x + " " + y);
 
         return false;
     }

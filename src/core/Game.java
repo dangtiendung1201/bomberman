@@ -63,6 +63,10 @@ public class Game extends Application {
 
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
+                if (grassPos[i][j] != null) {
+                    grassPos[i][j].render(gc);
+                }
+
                 if (wallPos[i][j] != null) {
                     wallPos[i][j].render(gc);
                 }
