@@ -13,7 +13,7 @@ import javafx.scene.input.KeyCode;
 public class Bomber extends Character {
     private int maxBomb = 1;
     private int cntBomb = 0;
-    private Bomb[] bomb = new Bomb[BOMBSITEM_MAX];
+    private Bomb[] bomb = new Bomb[BOMBSITEM_MAX + 1];
 
     public Bomber(int x, int y) {
         super(x, y);
@@ -120,6 +120,6 @@ public class Bomber extends Character {
         
         checkItem(x, y);
         // System.out.println("x: " + x + " y: " + y);
-        System.out.println("maxBomb: " + maxBomb);
+        // System.out.println("maxBomb: " + maxBomb);
     }
 }

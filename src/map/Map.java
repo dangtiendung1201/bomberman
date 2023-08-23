@@ -17,6 +17,7 @@ import java.util.Scanner;
 
 public class Map {
     private char[][] map;
+    private char[][] itemMap;
 
     public void read(String path) throws FileNotFoundException {
         // read map from file Level1.txt
@@ -30,6 +31,7 @@ public class Map {
             HEIGHT = row * OBJECT_SIZE + STATUS_BAR_SIZE * 2;
 
             map = new char[row][col];
+            itemMap = new char[row][col];
 
             for (int i = 0; i < row; i++) {
                 String line = sc.nextLine();
@@ -43,6 +45,17 @@ public class Map {
                     map[i][j] = line.charAt(j);
                 }
             }
+
+            sc.nextLine();
+            numItem = sc.nextInt();
+
+            for (int i = 1; i <= numItem; i++) {
+                char type = sc.next().charAt(0);
+                int x = sc.nextInt();
+                int y = sc.nextInt();
+
+                itemMap[x][y] = type;
+            }
         }
     }
 
@@ -50,11 +63,16 @@ public class Map {
         grassPos = new Grass[row][col];
         wallPos = new Wall[row][col];
         brickPos = new Brick[row][col];
-
         itemPos = new Item[row][col];
-        BOMBSITEM_MAX = 10;
 
-        itemPos[1][2] = new BombsItem(1, 2, itemImage);
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (itemMap[i][j] == 'b') {
+                    itemPos[i][j] = new BombsItem(i, j, itemImage);
+                    BOMBSITEM_MAX++;
+                }
+            }
+        }
 
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
@@ -64,10 +82,10 @@ public class Map {
                     wallPos[i][j] = new Wall(i, j, wallImage);
                 } else if (map[i][j] == 'p') {
                     bomberPos = new Bomber(i, j, bomberImage, keyListener);
-                }
-                else if (map[i][j] == '*') {
+                } else if (map[i][j] == '*') {
                     brickPos[i][j] = new Brick(i, j, brickImage);
                 }
+
             }
         }
     }
@@ -79,8 +97,12 @@ public class Map {
 
         // System.out.println(wallPos);
 
-        for (int i = 0; i < row; i++) {
-            System.out.println(map[i]);
-        }
+        // for (int i = 0; i < row; i++) {
+        // System.out.println(map[i]);
+        // }
+
+        // for (int i = 0; i < row; i++) {
+        // System.out.println(itemMap[i]);
+        // }
     }
 }

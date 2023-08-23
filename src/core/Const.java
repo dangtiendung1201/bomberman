@@ -50,6 +50,7 @@ public class Const {
     public static int lvl;
     public static int row;
     public static int col;
+    public static int numItem;
 
     public static Wall[][] wallPos;
     public static Bomber bomberPos;
@@ -57,5 +58,6 @@ public class Const {
     public static Brick[][] brickPos;
 
     public static Item[][] itemPos;
-    public static int BOMBSITEM_MAX = 10;
+    public static int ITEM_MAX;
+    public static int BOMBSITEM_MAX = 1;
 }
