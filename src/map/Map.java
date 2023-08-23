@@ -50,7 +50,9 @@ public class Map {
         grassPos = new Grass[row][col];
         wallPos = new Wall[row][col];
         brickPos = new Brick[row][col];
+
         itemPos = new Item[row][col];
+        BOMBSITEM_MAX = 10;
 
         itemPos[1][2] = new BombsItem(1, 2, itemImage);
 

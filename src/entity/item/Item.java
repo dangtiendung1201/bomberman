@@ -16,8 +16,4 @@ public abstract class Item extends Entity {
         super(x, y, sprite);
         this.cur = cur;
     }
-
-    public int getType() {
-        return cur;
-    }
 }

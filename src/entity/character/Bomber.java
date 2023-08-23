@@ -1,9 +1,10 @@
 package entity.character;
 
 import static core.Const.*;
-import static graphic.Sprite.bombImage;
+import static graphic.Sprite.*;
 
 import core.Const.DIRECTION;
+import entity.item.BombsItem;
 import entity.weapon.Bomb;
 import graphic.Sprite;
 import input.KeyListener;
@@ -11,8 +12,8 @@ import javafx.scene.input.KeyCode;
 
 public class Bomber extends Character {
     private int maxBomb = 1;
-    private int cntBomb;
-    private Bomb[] bomb = new Bomb[maxBomb];
+    private int cntBomb = 0;
+    private Bomb[] bomb = new Bomb[BOMBSITEM_MAX];
 
     public Bomber(int x, int y) {
         super(x, y);
@@ -56,25 +57,20 @@ public class Bomber extends Character {
 
     private boolean isBoom(int x, int y)
     {
-        for (int i = 0; i < cntBomb; i++)
+        for (int i = 0; i < maxBomb; i++)
         {
-            if (bomb[i].getX() == x && bomb[i].getY() == y)
+            if (bomb[i] != null && bomb[i].getX() == x && bomb[i].getY() == y)
                 return true;
         }
 
         return false;
     }
 
-    private void increaseMaxBomb() {
-        maxBomb++;
-    }
-
     private void checkItem(int x, int y) {
         if (itemPos[x][y] != null) {
-            if (itemPos[x][y].getType() == 0) {
-                increaseMaxBomb();
+            if (itemPos[x][y] instanceof BombsItem) {
+                maxBomb = ((BombsItem) itemPos[x][y]).update(x, y, maxBomb);
             }
-            itemPos[x][y] = null;
         }
     }
 
@@ -123,6 +119,7 @@ public class Bomber extends Character {
         }
         
         checkItem(x, y);
-        System.out.println("x: " + x + " y: " + y);
+        // System.out.println("x: " + x + " y: " + y);
+        System.out.println("maxBomb: " + maxBomb);
     }
 }

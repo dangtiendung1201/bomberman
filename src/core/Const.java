@@ -55,5 +55,7 @@ public class Const {
     public static Bomber bomberPos;
     public static Grass[][] grassPos;
     public static Brick[][] brickPos;
+
     public static Item[][] itemPos;
+    public static int BOMBSITEM_MAX = 10;
 }
