@@ -56,6 +56,9 @@ public class Balloom extends Enemy {
             cur = (cur + 1) % 3 + 3;
             y++;
         }
-    }
 
+        if (isBomber()) {
+            bomberPos.setDead(true);
+        }
+    }
 }

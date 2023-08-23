@@ -11,6 +11,8 @@ import input.KeyListener;
 import javafx.scene.input.KeyCode;
 
 public class Bomber extends Character {
+    private boolean isDead = false;
+
     private int maxBomb = 1;
     private int cntBomb = 0;
     private Bomb[] bomb = new Bomb[BOMBSITEM_MAX + 1];
@@ -33,6 +35,10 @@ public class Bomber extends Character {
 
     public Bomb[] getBomb() {
         return bomb;
+    }
+
+    public void setDead(boolean isDead) {
+        this.isDead = isDead;
     }
 
     private boolean isWall(int x, int y) {
@@ -66,20 +72,6 @@ public class Bomber extends Character {
 
     private boolean isEnemy() {
         if (enemyPos[x][y] != null)
-            return true;
-
-        return false;
-    }
-
-    private boolean isDead() {
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                if (enemyPos[i][j] != null && enemyPos[i][j].isBomber())
-                    return true;
-            }
-        }
-
-        if (isEnemy())
             return true;
 
         return false;
@@ -138,7 +130,11 @@ public class Bomber extends Character {
         }
 
         checkItem();
-        if (isDead()) {
+        if (isEnemy()) {
+            isDead = true;
+        }
+
+        if (isDead) {
             cur = 12;
         }
         // System.out.println("x: " + x + " y: " + y);

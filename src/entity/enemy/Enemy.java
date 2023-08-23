@@ -20,7 +20,7 @@ public abstract class Enemy extends Entity {
         cur = 0;
     }
 
-    public boolean isBomber() {
+    protected boolean isBomber() {
         return (x == bomberPos.getX() && y == bomberPos.getY());
     }
 
