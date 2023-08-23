@@ -28,7 +28,7 @@ public class Const {
 
     public static STATE gameState = STATE.MENU;
 
-    public static final int FPS = 60;
+    public static final int FPS = 1;
     public static final int DELAY_TIME = 1000 / FPS;
 
     public static final int BUTTON_WIDTH = 228;

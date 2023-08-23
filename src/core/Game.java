@@ -56,6 +56,13 @@ public class Game extends Application {
 
     private void update() {
         bomberPos.update();
+
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++)
+                if (enemyPos[i][j] != null) {
+                    enemyPos[i][j].update();
+                }
+        }
     }
 
     private void render(GraphicsContext gc) {
