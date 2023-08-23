@@ -1,6 +1,7 @@
 package core;
 
 import entity.character.Bomber;
+import entity.enemy.Enemy;
 import entity.item.Item;
 import entity.tile.Brick;
 import entity.tile.Grass;
@@ -56,6 +57,7 @@ public class Const {
     public static Bomber bomberPos;
     public static Grass[][] grassPos;
     public static Brick[][] brickPos;
+    public static Enemy[][] enemyPos;
 
     public static Item[][] itemPos;
     public static int ITEM_MAX;

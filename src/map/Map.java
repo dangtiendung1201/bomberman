@@ -3,12 +3,11 @@ package map;
 import static core.Const.*;
 import static graphic.Sprite.*;
 
-import entity.character.Bomber;
-import entity.item.BombsItem;
-import entity.item.Item;
-import entity.tile.Brick;
-import entity.tile.Grass;
-import entity.tile.Wall;
+import entity.character.*;
+import entity.enemy.*;
+import entity.item.*;
+import entity.tile.*;
+
 import input.KeyListener;
 
 import java.io.File;
@@ -64,6 +63,7 @@ public class Map {
         wallPos = new Wall[row][col];
         brickPos = new Brick[row][col];
         itemPos = new Item[row][col];
+        enemyPos = new Enemy[row][col];
 
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
@@ -85,6 +85,30 @@ public class Map {
                 } else if (map[i][j] == '*') {
                     brickPos[i][j] = new Brick(i, j, brickImage);
                 }
+                else if (map[i][j] == '1') {
+                    enemyPos[i][j] = new Balloom(i, j, balloomImage);
+                }
+                else if (map[i][j] == '2') {
+                    enemyPos[i][j] = new Oneal(i, j, onealImage);
+                }
+                // else if (map[i][j] == '3') {
+                //     enemyPos[i][j] = new Doll(i, j, dollImage);
+                // }
+                // else if (map[i][j] == '4') {
+                //     enemyPos[i][j] = new Minvo(i, j, minvoImage);
+                // }
+                // else if (map[i][j] == '5') {
+                //     enemyPos[i][j] = new Kondoria(i, j, kondoriaImage);
+                // }
+                // else if (map[i][j] == '6') {
+                //     enemyPos[i][j] = new Ovapi(i, j, ovapiImage);
+                // }
+                // else if (map[i][j] == '7') {
+                //     enemyPos[i][j] = new Pass(i, j, passImage);
+                // }
+                // else if (map[i][j] == '8') {
+                //     enemyPos[i][j] = new Pontan(i, j, pontanImage);
+                // }
 
             }
         }

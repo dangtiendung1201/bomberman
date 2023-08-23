@@ -88,6 +88,13 @@ public class Game extends Application {
             }
         }
 
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (enemyPos[i][j] != null) {
+                    enemyPos[i][j].render(gc);
+                }
+            }
+        }
         bomberPos.render(gc);
     }
 
@@ -102,7 +109,7 @@ public class Game extends Application {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        
+
         Group root = new Group();
         Scene scene = new Scene(root);
         Canvas canvas = new Canvas(WIDTH, HEIGHT);
@@ -113,15 +120,15 @@ public class Game extends Application {
         // map.print();
 
         // for (int i = 0; i < row; i++) {
-        //     for (int j = 0; j < col; j++) {
-        //         if (wallPos[i][j] != null) {
-        //             System.out.print("W");
-        //         }
-        //         else {
-        //             System.out.print(" ");
-        //         }
-        //     }
-        //     System.out.println();
+        // for (int j = 0; j < col; j++) {
+        // if (wallPos[i][j] != null) {
+        // System.out.print("W");
+        // }
+        // else {
+        // System.out.print(" ");
+        // }
+        // }
+        // System.out.println();
         // }
 
         root.getChildren().add(canvas);
