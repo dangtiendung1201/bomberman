@@ -4,7 +4,6 @@ import static core.Const.*;
 
 import core.Const.DIRECTION;
 import graphic.Sprite;
-import javafx.scene.control.skin.TextInputControlSkin.Direction;
 
 public class Balloom extends Enemy {
     public Balloom(int x, int y) {
@@ -62,3 +61,5 @@ public class Balloom extends Enemy {
         }
     }
 }
+
+// Test branch
