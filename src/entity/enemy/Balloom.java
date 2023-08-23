@@ -41,7 +41,6 @@ public class Balloom extends Enemy {
 
     @Override
     public void update() {
-        // change direction
         if (isBrick(x, y - 1) || isWall(x, y - 1)) {
             direction = DIRECTION.RIGHT;
         } else if (isBrick(x, y + 1) || isWall(x, y + 1)) {
@@ -50,9 +49,11 @@ public class Balloom extends Enemy {
 
         if (direction == DIRECTION.LEFT) {
             moving = true;
+            cur = (cur + 1) % 3;
             y--;
         } else if (direction == DIRECTION.RIGHT) {
             moving = true;
+            cur = (cur + 1) % 3 + 3;
             y++;
         }
     }

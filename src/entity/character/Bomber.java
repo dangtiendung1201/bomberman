@@ -55,10 +55,8 @@ public class Bomber extends Character {
         return false;
     }
 
-    private boolean isBoom(int x, int y)
-    {
-        for (int i = 0; i < maxBomb; i++)
-        {
+    private boolean isBoom(int x, int y) {
+        for (int i = 0; i < maxBomb; i++) {
             if (bomb[i] != null && bomb[i].getX() == x && bomb[i].getY() == y)
                 return true;
         }
@@ -66,7 +64,28 @@ public class Bomber extends Character {
         return false;
     }
 
-    private void checkItem(int x, int y) {
+    private boolean isEnemy() {
+        if (enemyPos[x][y] != null)
+            return true;
+
+        return false;
+    }
+
+    private boolean isDead() {
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (enemyPos[i][j] != null && enemyPos[i][j].isBomber())
+                    return true;
+            }
+        }
+
+        if (isEnemy())
+            return true;
+
+        return false;
+    }
+
+    private void checkItem() {
         if (itemPos[x][y] != null) {
             if (itemPos[x][y] instanceof BombsItem) {
                 maxBomb = ((BombsItem) itemPos[x][y]).update(x, y, maxBomb);
@@ -117,8 +136,11 @@ public class Bomber extends Character {
             isMoving = false;
             cur = 0;
         }
-        
-        checkItem(x, y);
+
+        checkItem();
+        if (isDead()) {
+            cur = 12;
+        }
         // System.out.println("x: " + x + " y: " + y);
         // System.out.println("maxBomb: " + maxBomb);
     }
