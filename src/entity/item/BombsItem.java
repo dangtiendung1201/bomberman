@@ -15,7 +15,7 @@ public class BombsItem extends Item {
         this.cur = 0;
     }
 
-    public int update(double x, double y, int maxBomb) {
+    public int update(int maxBomb) {
         maxBomb++;
         itemPos[(int) x][(int) y] = null;
 

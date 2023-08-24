@@ -1,5 +1,8 @@
 package core;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import entity.character.Bomber;
 import entity.enemy.Enemy;
 import entity.item.Item;
@@ -57,7 +60,7 @@ public class Const {
     public static Bomber bomberPos;
     public static Grass[][] grassPos;
     public static Brick[][] brickPos;
-    public static Enemy[][] enemyPos;
+    public static List<Enemy> enemyPos = new ArrayList<>();
 
     public static Item[][] itemPos;
     public static int ITEM_MAX;

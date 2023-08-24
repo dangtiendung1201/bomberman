@@ -12,7 +12,7 @@ import javafx.scene.input.KeyCode;
 
 public class Bomber extends Character {
     private boolean isDead = false;
-    private double speed = 0.5;
+    private double speed = 0.25;
 
     private int maxBomb = 1;
     private int cntBomb = 0;
@@ -90,14 +90,18 @@ public class Bomber extends Character {
         return false;
     }
 
+    private boolean checkInt(double num) {
+        return (num - (int) num) == 0;
+    }
+
     private void checkItem() {
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                if (itemPos[i][j] != null && this.checkIntersect(itemPos[i][j])) {
-                    if (itemPos[i][j] instanceof BombsItem) {
-                        maxBomb = ((BombsItem) itemPos[i][j]).update(i, j, maxBomb);
-                    }
-                }
+        if (checkInt(x) && checkInt(y)) {
+            int actualX = (int) x;
+            int actualY = (int) y;
+
+            if (itemPos[actualX][actualY] instanceof BombsItem) {
+                maxBomb = ((BombsItem) itemPos[actualX][actualY]).update(maxBomb);
+
             }
         }
     }
@@ -107,7 +111,7 @@ public class Bomber extends Character {
             setDirection(DIRECTION.UP);
             cur = (cur + 1) % 3;
 
-            if (isValid(x - speed, y) && !isWall(x - speed, y) && !isBrick(x - speed, y) && !isBoom(x - speed, y)) {
+            if (isValid(x - speed, y) && !isWall(x - speed, y) && !isBrick(x - speed, y)) {
                 isMoving = true;
                 x -= speed;
             }
@@ -115,7 +119,7 @@ public class Bomber extends Character {
             setDirection(DIRECTION.DOWN);
             cur = (cur + 1) % 3 + 3;
 
-            if (isValid(x + speed, y) && !isWall(x + speed, y) && !isBrick(x + speed, y) && !isBoom(x + speed, y)) {
+            if (isValid(x + speed, y) && !isWall(x + speed, y) && !isBrick(x + speed, y)) {
                 isMoving = true;
                 x += speed;
             }
@@ -123,7 +127,7 @@ public class Bomber extends Character {
             setDirection(DIRECTION.LEFT);
             cur = (cur + 1) % 3 + 6;
 
-            if (isValid(x, y - speed) && !isWall(x, y - speed) && !isBrick(x, y - speed) && !isBoom(x, y - speed)) {
+            if (isValid(x, y - speed) && !isWall(x, y - speed) && !isBrick(x, y - speed)) {
                 isMoving = true;
                 y -= speed;
             }
@@ -131,13 +135,16 @@ public class Bomber extends Character {
             setDirection(DIRECTION.RIGHT);
             cur = (cur + 1) % 3 + 9;
 
-            if (isValid(x, y + speed) && !isWall(x, y + speed) && !isBrick(x, y + speed) && !isBoom(x, y + speed)) {
+            if (isValid(x, y + speed) && !isWall(x, y + speed) && !isBrick(x, y + speed)) {
                 isMoving = true;
                 y += speed;
             }
         } else if (keyListener.isPressed(KeyCode.SPACE)) {
-            if (cntBomb < maxBomb && !isBoom(x, y)) {
-                bomb[cntBomb] = new Bomb(x, y, bombImage);
+            int actualX = (int) Math.round(x);
+            int actualY = (int) Math.round(y);
+
+            if (cntBomb < maxBomb && !isBoom(actualX, actualY)) {
+                bomb[cntBomb] = new Bomb(actualX, actualY, bombImage);
                 cntBomb++;
             }
 
@@ -154,7 +161,7 @@ public class Bomber extends Character {
         if (isDead) {
             cur = 12;
         }
-        // System.out.println("x: " + x + " y: " + y);
+        System.out.println("x: " + x + " y: " + y);
         // System.out.println("maxBomb: " + maxBomb);
     }
 }
