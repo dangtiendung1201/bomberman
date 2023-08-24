@@ -95,13 +95,13 @@ public class Game extends Application {
             }
         }
 
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                if (enemyPos[i][j] != null) {
-                    enemyPos[i][j].render(gc);
-                }
-            }
-        }
+        // for (int i = 0; i < row; i++) {
+        //     for (int j = 0; j < col; j++) {
+        //         if (enemyPos[i][j] != null) {
+        //             enemyPos[i][j].render(gc);
+        //         }
+        //     }
+        // }
         bomberPos.render(gc);
     }
 

@@ -43,7 +43,7 @@ public class Const {
     public static final int BUTTON_EXIT_START_X = 486;
     public static final int BUTTON_EXIT_START_Y = 524;
 
-    public static final int OBJECT_SIZE = 35;
+    public static final int OBJECT_SIZE = 32;
     public static final int OFFSET_STATUS_BAR = 60;
     public static final int STATUS_BAR_SIZE = 60;
     public static final int OFFSET_MAP = 660;

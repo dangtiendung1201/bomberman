@@ -85,12 +85,12 @@ public class Map {
                 } else if (map[i][j] == '*') {
                     brickPos[i][j] = new Brick(i, j, brickImage);
                 }
-                else if (map[i][j] == '1') {
-                    enemyPos[i][j] = new Balloom(i, j, balloomImage);
-                }
-                else if (map[i][j] == '2') {
-                    enemyPos[i][j] = new Oneal(i, j, onealImage);
-                }
+                // else if (map[i][j] == '1') {
+                //     enemyPos[i][j] = new Balloom(i, j, balloomImage);
+                // }
+                // else if (map[i][j] == '2') {
+                //     enemyPos[i][j] = new Oneal(i, j, onealImage);
+                // }
                 // else if (map[i][j] == '3') {
                 //     enemyPos[i][j] = new Doll(i, j, dollImage);
                 // }

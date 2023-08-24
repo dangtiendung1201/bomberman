@@ -12,20 +12,19 @@ import javafx.scene.input.KeyCode;
 
 public class Bomber extends Character {
     private boolean isDead = false;
+    private double speed = 0.05;
 
     private int maxBomb = 1;
     private int cntBomb = 0;
     private Bomb[] bomb = new Bomb[BOMBSITEM_MAX + 1];
 
-    public Bomber(int x, int y) {
+    public Bomber(double x, double y) {
         super(x, y);
-        speed = 60;
         isMoving = false;
     }
 
-    public Bomber(int x, int y, Sprite[] sprite, KeyListener keyListener) {
+    public Bomber(double x, double y, Sprite[] sprite, KeyListener keyListener) {
         super(x, y, sprite, keyListener);
-        speed = 60;
         isMoving = false;
     }
 
@@ -41,29 +40,43 @@ public class Bomber extends Character {
         this.isDead = isDead;
     }
 
-    private boolean isWall(int x, int y) {
+    private boolean isValid(double x, double y) {
         if (x < 0 || y < 0 || x > row || y > col)
             return false;
+        return true;
+    }
 
-        if (wallPos[x][y] != null)
-            return true;
+    private boolean isWall(double x, double y) {
+        Bomber tmpBomber = new Bomber(x, y);
+
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (wallPos[i][j] != null && tmpBomber.checkIntersect(wallPos[i][j]))
+                    return true;
+            }
+        }
 
         return false;
     }
 
-    private boolean isBrick(int x, int y) {
-        if (x < 0 || y < 0 || x > row || y > col)
-            return false;
+    private boolean isBrick(double x, double y) {
+        Bomber tmpBomber = new Bomber(x, y);
 
-        if (brickPos[x][y] != null)
-            return true;
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (brickPos[i][j] != null && tmpBomber.checkIntersect(brickPos[i][j]))
+                    return true;
+            }
+        }
 
         return false;
     }
 
-    private boolean isBoom(int x, int y) {
+    private boolean isBoom(double x, double y) {
+        Bomber tmpBomber = new Bomber(x, y);
+
         for (int i = 0; i < maxBomb; i++) {
-            if (bomb[i] != null && bomb[i].getX() == x && bomb[i].getY() == y)
+            if (bomb[i] != null && tmpBomber.checkIntersect(bomb[i]))
                 return true;
         }
 
@@ -71,16 +84,20 @@ public class Bomber extends Character {
     }
 
     private boolean isEnemy() {
-        if (enemyPos[x][y] != null)
-            return true;
+        // if (enemyPos[x][y] != null)
+        // return true;
 
         return false;
     }
 
     private void checkItem() {
-        if (itemPos[x][y] != null) {
-            if (itemPos[x][y] instanceof BombsItem) {
-                maxBomb = ((BombsItem) itemPos[x][y]).update(x, y, maxBomb);
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (itemPos[i][j] != null && this.checkIntersect(itemPos[i][j])) {
+                    if (itemPos[i][j] instanceof BombsItem) {
+                        maxBomb = ((BombsItem) itemPos[i][j]).update(i, j, maxBomb);
+                    }
+                }
             }
         }
     }
@@ -90,33 +107,33 @@ public class Bomber extends Character {
             setDirection(DIRECTION.UP);
             cur = (cur + 1) % 3;
 
-            if (!isWall(x - 1, y) && !isBrick(x - 1, y) && !isBoom(x - 1, y)) {
+            if (isValid(x - speed, y) && !isWall(x - speed, y) && !isBrick(x - speed, y) && !isBoom(x - speed, y)) {
                 isMoving = true;
-                x--;
+                x -= speed;
             }
         } else if (keyListener.isPressed(KeyCode.DOWN)) {
             setDirection(DIRECTION.DOWN);
             cur = (cur + 1) % 3 + 3;
 
-            if (!isWall(x + 1, y) && !isBrick(x + 1, y) && !isBoom(x + 1, y)) {
+            if (isValid(x + speed, y) && !isWall(x + speed, y) && !isBrick(x + speed, y) && !isBoom(x + speed, y)) {
                 isMoving = true;
-                x++;
+                x += speed;
             }
-        } else if (keyListener.isPressed(KeyCode.LEFT) && !isBoom(x, y - 1)) {
+        } else if (keyListener.isPressed(KeyCode.LEFT) && !isBoom(x, y - speed)) {
             setDirection(DIRECTION.LEFT);
             cur = (cur + 1) % 3 + 6;
 
-            if (!isWall(x, y - 1) && !isBrick(x, y - 1) && !isBoom(x, y - 1)) {
+            if (isValid(x, y - speed) && !isWall(x, y - speed) && !isBrick(x, y - speed) && !isBoom(x, y - speed)) {
                 isMoving = true;
-                y--;
+                y -= speed;
             }
         } else if (keyListener.isPressed(KeyCode.RIGHT)) {
             setDirection(DIRECTION.RIGHT);
             cur = (cur + 1) % 3 + 9;
 
-            if (!isWall(x, y + 1) && !isBrick(x, y + 1) && !isBoom(x, y + 1)) {
+            if (isValid(x, y + speed) && !isWall(x, y + speed) && !isBrick(x, y + speed) && !isBoom(x, y + speed)) {
                 isMoving = true;
-                y++;
+                y += speed;
             }
         } else if (keyListener.isPressed(KeyCode.SPACE)) {
             if (cntBomb < maxBomb && !isBoom(x, y)) {

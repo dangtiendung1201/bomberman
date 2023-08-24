@@ -4,19 +4,19 @@ import entity.Entity;
 import graphic.Sprite;
 
 public abstract class Tile extends Entity {
-    public Tile(int x, int y) {
+    public Tile(double x, double y) {
         super(x, y);
     }
 
-    public Tile(int x, int y, Sprite[] sprite) {
+    public Tile(double x, double y, Sprite[] sprite) {
         super(x, y, sprite);
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 }

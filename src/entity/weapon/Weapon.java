@@ -5,11 +5,11 @@ import graphic.Sprite;
 
 public abstract class Weapon extends Entity {
 
-    public Weapon(int x, int y) {
+    public Weapon(double x, double y) {
         super(x, y);
     }
 
-    public Weapon(int x, int y, Sprite[] sprite) {
+    public Weapon(double x, double y, Sprite[] sprite) {
         super(x, y, sprite);
     }
     

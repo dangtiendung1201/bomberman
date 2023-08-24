@@ -4,12 +4,12 @@ import graphic.Sprite;
 
 public class Oneal extends Enemy {
 
-    public Oneal(int x, int y) {
+    public Oneal(double x, double y) {
         super(x, y);
         wallPass = false;
     }
 
-    public Oneal(int x, int y, Sprite[] sprite) {
+    public Oneal(double x, double y, Sprite[] sprite) {
         super(x, y, sprite);
         wallPass = false;
     }

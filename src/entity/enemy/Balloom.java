@@ -6,43 +6,45 @@ import core.Const.DIRECTION;
 import graphic.Sprite;
 
 public class Balloom extends Enemy {
-    public Balloom(int x, int y) {
+    public Balloom(double x, double y) {
         super(x, y);
         wallPass = false;
         direction = DIRECTION.RIGHT;
     }
 
-    public Balloom(int x, int y, Sprite[] sprite) {
+    public Balloom(double x, double y, Sprite[] sprite) {
         super(x, y, sprite);
         wallPass = false;
         direction = DIRECTION.RIGHT;
     }
 
-    private boolean isWall(int x, int y) {
+    private boolean isValid(double x, double y) {
         if (x < 0 || y < 0 || x > row || y > col)
             return false;
+        return true;
+    }
 
-        if (wallPos[x][y] != null)
-            return true;
+    private boolean isWall(double x, double y) {
+
+        // if (wallPos[x][y] != null)
+        //     return true;
 
         return false;
     }
 
-    private boolean isBrick(int x, int y) {
-        if (x < 0 || y < 0 || x > row || y > col)
-            return false;
+    private boolean isBrick(double x, double y) {
 
-        if (brickPos[x][y] != null)
-            return true;
+        // if (brickPos[x][y] != null)
+        //     return true;
 
         return false;
     }
 
     @Override
     public void update() {
-        if (isBrick(x, y - 1) || isWall(x, y - 1)) {
+        if (!isValid(x, y - 1) || isBrick(x, y - 1) || isWall(x, y - 1)) {
             direction = DIRECTION.RIGHT;
-        } else if (isBrick(x, y + 1) || isWall(x, y + 1)) {
+        } else if (!isValid(x, y + 1) || isBrick(x, y + 1) || isWall(x, y + 1)) {
             direction = DIRECTION.LEFT;
         }
 

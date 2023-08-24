@@ -10,12 +10,12 @@ public abstract class Enemy extends Entity {
     protected int cur;
     protected boolean moving;
 
-    public Enemy(int x, int y) {
+    public Enemy(double x, double y) {
         super(x, y);
         cur = 0;
     }
 
-    public Enemy(int x, int y, Sprite[] sprite) {
+    public Enemy(double x, double y, Sprite[] sprite) {
         super(x, y, sprite);
         cur = 0;
     }
