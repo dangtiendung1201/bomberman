@@ -3,6 +3,7 @@ package map;
 import static core.Const.*;
 import static graphic.Sprite.*;
 
+import entity.Portal;
 import entity.character.*;
 import entity.enemy.*;
 import entity.item.*;
@@ -77,36 +78,37 @@ public class Map {
             for (int j = 0; j < col; j++) {
                 grassPos[i][j] = new Grass(i, j, grassImage);
 
-                if (map[i][j] == '#') {
+                if (map[i][j] == 'x') {
+                    brickPos[i][j] = new Brick(i, j, brickImage);
+                    portalPos = new Portal(i, j, portalImage);
+                } else if (map[i][j] == '#') {
                     wallPos[i][j] = new Wall(i, j, wallImage);
                 } else if (map[i][j] == 'p') {
                     bomberPos = new Bomber(i, j, bomberImage, keyListener);
                 } else if (map[i][j] == '*') {
                     brickPos[i][j] = new Brick(i, j, brickImage);
-                }
-                else if (map[i][j] == '1') {
+                } else if (map[i][j] == '1') {
                     enemyPos.add(new Balloom(i, j, balloomImage));
-                }
-                else if (map[i][j] == '2') {
+                } else if (map[i][j] == '2') {
                     enemyPos.add(new Oneal(i, j, onealImage));
                 }
                 // else if (map[i][j] == '3') {
-                //     enemyPos[i][j] = new Doll(i, j, dollImage);
+                // enemyPos[i][j] = new Doll(i, j, dollImage);
                 // }
                 // else if (map[i][j] == '4') {
-                //     enemyPos[i][j] = new Minvo(i, j, minvoImage);
+                // enemyPos[i][j] = new Minvo(i, j, minvoImage);
                 // }
                 // else if (map[i][j] == '5') {
-                //     enemyPos[i][j] = new Kondoria(i, j, kondoriaImage);
+                // enemyPos[i][j] = new Kondoria(i, j, kondoriaImage);
                 // }
                 // else if (map[i][j] == '6') {
-                //     enemyPos[i][j] = new Ovapi(i, j, ovapiImage);
+                // enemyPos[i][j] = new Ovapi(i, j, ovapiImage);
                 // }
                 // else if (map[i][j] == '7') {
-                //     enemyPos[i][j] = new Pass(i, j, passImage);
+                // enemyPos[i][j] = new Pass(i, j, passImage);
                 // }
                 // else if (map[i][j] == '8') {
-                //     enemyPos[i][j] = new Pontan(i, j, pontanImage);
+                // enemyPos[i][j] = new Pontan(i, j, pontanImage);
                 // }
 
             }

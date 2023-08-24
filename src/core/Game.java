@@ -57,6 +57,7 @@ public class Game extends Application {
 
     private void update() {
         bomberPos.update();
+        portalPos.update();
 
         if (!enemyPos.isEmpty()) {
             for (Enemy enemy : enemyPos) {
@@ -73,7 +74,13 @@ public class Game extends Application {
                 if (grassPos[i][j] != null) {
                     grassPos[i][j].render(gc);
                 }
+            }
+        }
 
+        portalPos.render(gc);
+
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
                 if (wallPos[i][j] != null) {
                     wallPos[i][j].render(gc);
                 }
@@ -89,7 +96,7 @@ public class Game extends Application {
             }
         }
 
-        for (int i = 0; i < bomberPos.getBomb().length; i++) {
+        for (int i = 0; i < bomberPos.getMaxBomb(); i++) {
             if (bomberPos.getBomb()[i] != null) {
                 bomberPos.getBomb()[i].render(gc);
             }

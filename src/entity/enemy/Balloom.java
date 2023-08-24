@@ -4,7 +4,6 @@ import static core.Const.*;
 
 import core.Const.DIRECTION;
 import graphic.Sprite;
-import javafx.application.Platform;
 
 public class Balloom extends Enemy {
     public Balloom(double x, double y) {
