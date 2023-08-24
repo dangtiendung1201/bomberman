@@ -26,7 +26,8 @@ public class Const {
         UP,
         DOWN,
         LEFT,
-        RIGHT
+        RIGHT,
+        STAND
     }
 
     public static STATE gameState = STATE.MENU;

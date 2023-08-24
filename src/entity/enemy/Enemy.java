@@ -10,6 +10,7 @@ public abstract class Enemy extends Entity {
     protected double speed;
     protected int cur;
     protected boolean moving;
+    protected boolean isDead;
 
     public Enemy(double x, double y) {
         super(x, y);

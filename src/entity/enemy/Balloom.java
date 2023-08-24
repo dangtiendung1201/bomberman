@@ -2,11 +2,9 @@ package entity.enemy;
 
 import static core.Const.*;
 
-import javax.swing.text.html.HTMLDocument.Iterator;
-
 import core.Const.DIRECTION;
-import entity.character.Bomber;
 import graphic.Sprite;
+import javafx.application.Platform;
 
 public class Balloom extends Enemy {
     public Balloom(double x, double y) {
@@ -14,6 +12,7 @@ public class Balloom extends Enemy {
         speed = 0.25;
         wallPass = false;
         direction = DIRECTION.RIGHT;
+        isDead = false;
     }
 
     public Balloom(double x, double y, Sprite[] sprite) {
@@ -21,6 +20,7 @@ public class Balloom extends Enemy {
         speed = 0.25;
         wallPass = false;
         direction = DIRECTION.RIGHT;
+        isDead = false;
     }
 
     private boolean isValid(double x, double y) {
@@ -55,10 +55,9 @@ public class Balloom extends Enemy {
         return false;
     }
 
-    // public static int haha = 0;
-
     private boolean isBomber() {
         if (this.checkIntersect(bomberPos)) {
+            isDead = true;
             return true;
         }
 
@@ -81,10 +80,19 @@ public class Balloom extends Enemy {
             moving = true;
             cur = (cur + 1) % 3 + 3;
             y += speed;
+        } else if (direction == DIRECTION.STAND) {
+            moving = false;
         }
 
         if (isBomber()) {
             bomberPos.setDead(true);
+            // Platform.runLater(() -> {
+            //     enemyPos.remove(this);
+            // });
+        }
+
+        if (isDead) {
+            cur = 6;
         }
     }
 }

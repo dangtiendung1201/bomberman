@@ -64,6 +64,8 @@ public class Map {
         brickPos = new Brick[row][col];
         itemPos = new Item[row][col];
 
+        enemyPos.add(new Balloom(0, 0, balloomImage));
+
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
                 if (itemMap[i][j] == 'b') {
