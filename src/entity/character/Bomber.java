@@ -4,6 +4,7 @@ import static core.Const.*;
 import static graphic.Sprite.*;
 
 import core.Const.DIRECTION;
+import entity.enemy.Enemy;
 import entity.item.BombsItem;
 import entity.weapon.Bomb;
 import graphic.Sprite;
@@ -13,7 +14,7 @@ import javafx.scene.input.KeyCode;
 public class Bomber extends Character {
     private boolean isDead = false;
     private double speed = 0.25;
-    private boolean bombPass = true;
+    private boolean bombPass = false;
 
     private int maxBomb = 1;
     private int cntBomb = 0;
@@ -86,7 +87,7 @@ public class Bomber extends Character {
             int actualY = (int) y;
 
             for (int i = 0; i < maxBomb; i++) {
-                if (bomb[i] != null && bomb[i].getX() == actualX && bomb[i].getY() == actualY)
+                if (bomb[i] != null && (int) bomb[i].getX() == actualX && (int) bomb[i].getY() == actualY)
                     return true;
             }
 
@@ -95,9 +96,27 @@ public class Bomber extends Character {
         return false;
     }
 
+    private void placeBomb() {
+        if (cntBomb < maxBomb) {
+            int actualX = (int) x;
+            int actualY = (int) y;
+
+            for (int i = 0; i < maxBomb; i++) {
+                if (bomb[i] != null && (int) bomb[i].getX() == actualX && (int) bomb[i].getY() == actualY) {
+                    return;
+                }
+            }
+
+            bomb[cntBomb] = new Bomb((double) actualX, (double) actualY, bombImage);
+            cntBomb++;
+        }
+    }
+
     private boolean isEnemy() {
-        // if (enemyPos[x][y] != null)
-        // return true;
+        for (Enemy enemy : enemyPos) {
+            if (this.checkIntersect(enemy))
+                return true;
+        }
 
         return false;
     }
@@ -148,14 +167,7 @@ public class Bomber extends Character {
                 y += speed;
             }
         } else if (keyListener.isPressed(KeyCode.SPACE)) {
-            int actualX = (int) Math.round(x);
-            int actualY = (int) Math.round(y);
-
-            if (cntBomb < maxBomb && !isBoom(actualX, actualY)) {
-                bomb[cntBomb] = new Bomb(actualX, actualY, bombImage);
-                cntBomb++;
-            }
-
+            placeBomb();
         } else if (keyListener.isReleased()) {
             isMoving = false;
             cur = 0;

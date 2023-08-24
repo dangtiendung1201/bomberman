@@ -8,6 +8,7 @@ import input.KeyListener;
 public abstract class Character extends Entity {
     protected KeyListener keyListener;
     protected DIRECTION direction;
+    protected double speed = 0.25;
     protected boolean isMoving = false;
     public Character(double x, double y) {
         super(x, y);
