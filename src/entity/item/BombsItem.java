@@ -5,19 +5,19 @@ import graphic.Sprite;
 
 public class BombsItem extends Item {
 
-    public BombsItem(int x, int y) {
+    public BombsItem(double x, double y) {
         super(x, y);
         this.cur = 0;
     }
 
-    public BombsItem(int x, int y, Sprite[] sprite) {
+    public BombsItem(double x, double y, Sprite[] sprite) {
         super(x, y, sprite);
         this.cur = 0;
     }
 
-    public int update(int x, int y, int maxBomb) {
+    public int update(int maxBomb) {
         maxBomb++;
-        itemPos[x][y] = null;
+        itemPos[(int) x][(int) y] = null;
 
         return maxBomb;
     }

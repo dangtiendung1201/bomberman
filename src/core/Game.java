@@ -7,6 +7,7 @@ import map.*;
 import java.io.FileNotFoundException;
 
 import core.Const.STATE;
+import entity.enemy.Enemy;
 import input.KeyListener;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -57,11 +58,10 @@ public class Game extends Application {
     private void update() {
         bomberPos.update();
 
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++)
-                if (enemyPos[i][j] != null) {
-                    enemyPos[i][j].update();
-                }
+        if (!enemyPos.isEmpty()) {
+            for (Enemy enemy : enemyPos) {
+                enemy.update();
+            }
         }
     }
 
@@ -95,11 +95,9 @@ public class Game extends Application {
             }
         }
 
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                if (enemyPos[i][j] != null) {
-                    enemyPos[i][j].render(gc);
-                }
+        if (!enemyPos.isEmpty()) {
+            for (Enemy enemy : enemyPos) {
+                enemy.render(gc);
             }
         }
         bomberPos.render(gc);

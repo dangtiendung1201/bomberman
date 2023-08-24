@@ -4,11 +4,11 @@ import graphic.Sprite;
 
 public class Grass extends Tile {
 
-    public Grass(int x, int y) {
+    public Grass(double x, double y) {
         super(x, y);
     }
     
-    public Grass(int x, int y, Sprite[] sprite) {
+    public Grass(double x, double y, Sprite[] sprite) {
         super(x, y, sprite);
     }
 }

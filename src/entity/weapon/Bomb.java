@@ -4,11 +4,11 @@ import graphic.Sprite;
 
 public class Bomb extends Weapon {
 
-    public Bomb(int x, int y) {
+    public Bomb(double x, double y) {
         super(x, y);
     }
 
-    public Bomb(int x, int y, Sprite[] sprite) {
+    public Bomb(double x, double y, Sprite[] sprite) {
         super(x, y, sprite);
     }
 }

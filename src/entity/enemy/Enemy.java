@@ -7,21 +7,20 @@ import graphic.Sprite;
 public abstract class Enemy extends Entity {
     protected boolean wallPass;
     protected DIRECTION direction;
+    protected double speed;
     protected int cur;
     protected boolean moving;
+    protected boolean bombPass;
+    protected boolean isDead;
 
-    public Enemy(int x, int y) {
+    public Enemy(double x, double y) {
         super(x, y);
         cur = 0;
     }
 
-    public Enemy(int x, int y, Sprite[] sprite) {
+    public Enemy(double x, double y, Sprite[] sprite) {
         super(x, y, sprite);
         cur = 0;
-    }
-
-    protected boolean isBomber() {
-        return (x == bomberPos.getX() && y == bomberPos.getY());
     }
 
     public abstract void update();

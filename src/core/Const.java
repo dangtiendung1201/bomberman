@@ -1,5 +1,8 @@
 package core;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import entity.character.Bomber;
 import entity.enemy.Enemy;
 import entity.item.Item;
@@ -23,12 +26,13 @@ public class Const {
         UP,
         DOWN,
         LEFT,
-        RIGHT
+        RIGHT,
+        STAND
     }
 
     public static STATE gameState = STATE.MENU;
 
-    public static final int FPS = 60;
+    public static final int FPS = 25;
     public static final int DELAY_TIME = 1000 / FPS;
 
     public static final int BUTTON_WIDTH = 228;
@@ -43,7 +47,7 @@ public class Const {
     public static final int BUTTON_EXIT_START_X = 486;
     public static final int BUTTON_EXIT_START_Y = 524;
 
-    public static final int OBJECT_SIZE = 35;
+    public static final int OBJECT_SIZE = 32;
     public static final int OFFSET_STATUS_BAR = 60;
     public static final int STATUS_BAR_SIZE = 60;
     public static final int OFFSET_MAP = 660;
@@ -57,7 +61,7 @@ public class Const {
     public static Bomber bomberPos;
     public static Grass[][] grassPos;
     public static Brick[][] brickPos;
-    public static Enemy[][] enemyPos;
+    public static List<Enemy> enemyPos = new ArrayList<>();
 
     public static Item[][] itemPos;
     public static int ITEM_MAX;
