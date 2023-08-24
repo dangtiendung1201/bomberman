@@ -64,11 +64,33 @@ public class Balloom extends Enemy {
         return false;
     }
 
+    private boolean checkInt(double num) {
+        return (num - (int) num) == 0;
+    }
+
+    private boolean isBoom(double x, double y) {
+        if (bombPass)
+            return false;
+
+        if (checkInt(x) && checkInt(y)) {
+            int actualX = (int) x;
+            int actualY = (int) y;
+
+            for (int i = 0; i < bomberPos.getMaxBomb(); i++) {
+                if (bomberPos.getBomb()[i] != null && (int) bomberPos.getBomb()[i].getX() == actualX && (int) bomberPos.getBomb()[i].getY() == actualY)
+                    return true;
+            }
+
+        }
+
+        return false;
+    }
+
     @Override
     public void update() {
-        if (!isValid(x, y - speed) || isBrick(x, y - speed) || isWall(x, y - speed)) {
+        if (!isValid(x, y - speed) || isBrick(x, y - speed) || isWall(x, y - speed) || isBoom(x, y - speed)) {
             direction = DIRECTION.RIGHT;
-        } else if (!isValid(x, y + speed) || isBrick(x, y + speed) || isWall(x, y + speed)) {
+        } else if (!isValid(x, y + speed) || isBrick(x, y + speed) || isWall(x, y + speed) || isBoom(x, y + speed)) {
             direction = DIRECTION.LEFT;
         }
 
@@ -87,7 +109,7 @@ public class Balloom extends Enemy {
         if (isBomber()) {
             bomberPos.setDead(true);
             // Platform.runLater(() -> {
-            //     enemyPos.remove(this);
+            // enemyPos.remove(this);
             // });
         }
 

@@ -34,6 +34,10 @@ public class Bomber extends Character {
         return cntBomb;
     }
 
+    public int getMaxBomb() {
+        return maxBomb;
+    }
+
     public Bomb[] getBomb() {
         return bomb;
     }

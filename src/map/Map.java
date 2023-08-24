@@ -64,8 +64,6 @@ public class Map {
         brickPos = new Brick[row][col];
         itemPos = new Item[row][col];
 
-        enemyPos.add(new Balloom(0, 0, balloomImage));
-
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
                 if (itemMap[i][j] == 'b') {
@@ -89,9 +87,9 @@ public class Map {
                 else if (map[i][j] == '1') {
                     enemyPos.add(new Balloom(i, j, balloomImage));
                 }
-                // else if (map[i][j] == '2') {
-                //     enemyPos[i][j] = new Oneal(i, j, onealImage);
-                // }
+                else if (map[i][j] == '2') {
+                    enemyPos.add(new Oneal(i, j, onealImage));
+                }
                 // else if (map[i][j] == '3') {
                 //     enemyPos[i][j] = new Doll(i, j, dollImage);
                 // }
