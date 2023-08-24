@@ -36,18 +36,18 @@ public abstract class Entity {
     }
 
     public boolean checkIntersect(Entity entity) {
-        double topA = OFFSET_STATUS_BAR + x * 150;
-        double leftA = y * 150;
-        double bottomA = OFFSET_STATUS_BAR + (x + 1) * 150;
-        double rightA = (y + 1) * 150;
+        double topA = OFFSET_STATUS_BAR + x * OBJECT_SIZE;
+        double leftA = y * OBJECT_SIZE;
+        double bottomA = OFFSET_STATUS_BAR + (x + 1) * OBJECT_SIZE;
+        double rightA = (y + 1) * OBJECT_SIZE;
 
-        double topB = OFFSET_STATUS_BAR + entity.getX() * 150;
-        double leftB = entity.getY() * 150;
-        double bottomB = OFFSET_STATUS_BAR + (entity.getX() + 1) * 150;
-        double rightB = (entity.getY() + 1) * 150;
+        double topB = OFFSET_STATUS_BAR + entity.getX() * OBJECT_SIZE;
+        double leftB = entity.getY() * OBJECT_SIZE;
+        double bottomB = OFFSET_STATUS_BAR + (entity.getX() + 1) * OBJECT_SIZE;
+        double rightB = (entity.getY() + 1) * OBJECT_SIZE;
 
-        System.out.println("A" + x + " " + y + " " + topA + " " + leftA + " " +
-        bottomA + " " + rightA);
+        // System.out.println("A" + x + " " + y + " " + topA + " " + leftA + " " +
+        // bottomA + " " + rightA);
         // System.out.println("B" + entity.getX() + " " + entity.getY() + " " + topB + "
         // " + leftB + " " + bottomB + " " + rightB);
 

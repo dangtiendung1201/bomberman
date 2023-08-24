@@ -12,7 +12,7 @@ import javafx.scene.input.KeyCode;
 
 public class Bomber extends Character {
     private boolean isDead = false;
-    private double speed = 0.05;
+    private double speed = 0.5;
 
     private int maxBomb = 1;
     private int cntBomb = 0;
@@ -119,7 +119,7 @@ public class Bomber extends Character {
                 isMoving = true;
                 x += speed;
             }
-        } else if (keyListener.isPressed(KeyCode.LEFT) && !isBoom(x, y - speed)) {
+        } else if (keyListener.isPressed(KeyCode.LEFT)) {
             setDirection(DIRECTION.LEFT);
             cur = (cur + 1) % 3 + 6;
 
