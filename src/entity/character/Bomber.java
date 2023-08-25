@@ -3,6 +3,9 @@ package entity.character;
 import static core.Const.*;
 import static graphic.Sprite.*;
 
+import java.sql.Time;
+import java.util.Timer;
+
 import core.Const.DIRECTION;
 import entity.enemy.Enemy;
 import entity.item.BombsItem;
@@ -13,6 +16,7 @@ import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 
 public class Bomber extends Character {
+    private int bombTime = 50;
     private boolean isDead = false;
     private double speed = 0.25;
     private boolean bombPass = false;
@@ -124,6 +128,12 @@ public class Bomber extends Character {
             bomb[cntBomb] = new Bomb((double) actualX, (double) actualY, bombImage);
             bomb[cntBomb].update();
             cntBomb++;
+
+            Platform.runLater(() -> {
+                flamePos.clear();
+                cntBomb--;
+                bomb[cntBomb] = null;
+            });
         }
     }
 
@@ -187,12 +197,6 @@ public class Bomber extends Character {
         }
         if (keyListener.isPressed(KeyCode.SPACE)) {
             placeBomb();
-
-            Platform.runLater(() -> {
-                flamePos.clear();
-                cntBomb--;
-                bomb[cntBomb] = null;
-            });
         }
         if (keyListener.isReleased()) {
             isMoving = false;
@@ -207,7 +211,7 @@ public class Bomber extends Character {
         if (isDead) {
             cur = 12;
         }
-        System.out.println("x: " + x + " y: " + y);
+        // System.out.println("x: " + x + " y: " + y);
         // System.out.println("maxBomb: " + maxBomb);
     }
 }
