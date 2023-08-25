@@ -9,6 +9,7 @@ import entity.item.BombsItem;
 import entity.weapon.Bomb;
 import graphic.Sprite;
 import input.KeyListener;
+import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 
 public class Bomber extends Character {
@@ -123,7 +124,12 @@ public class Bomber extends Character {
             bomb[cntBomb] = new Bomb((double) actualX, (double) actualY, bombImage);
             bomb[cntBomb].update();
             cntBomb++;
-            
+
+            Platform.runLater(() -> {
+                flamePos.clear();
+                cntBomb--;
+                bomb[cntBomb] = null;
+            });
         }
     }
 
