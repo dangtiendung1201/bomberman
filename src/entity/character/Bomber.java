@@ -19,6 +19,7 @@ public class Bomber extends Character {
     private int maxBomb = 1;
     private int cntBomb = 0;
     private Bomb[] bomb = new Bomb[BOMBSITEM_MAX + 1];
+    private int flameSize = 1;
 
     public Bomber(double x, double y) {
         super(x, y);
@@ -42,8 +43,16 @@ public class Bomber extends Character {
         return bomb;
     }
 
+    public int getFlameSize() {
+        return flameSize;
+    }
+
     public void setDead(boolean isDead) {
         this.isDead = isDead;
+    }
+
+    public void setFlameSize(int flameSize) {
+        this.flameSize = flameSize;
     }
 
     private boolean isValid(double x, double y) {
@@ -112,7 +121,9 @@ public class Bomber extends Character {
             }
 
             bomb[cntBomb] = new Bomb((double) actualX, (double) actualY, bombImage);
+            bomb[cntBomb].update();
             cntBomb++;
+            
         }
     }
 

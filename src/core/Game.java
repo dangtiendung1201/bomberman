@@ -7,6 +7,7 @@ import map.*;
 import java.io.FileNotFoundException;
 
 import core.Const.STATE;
+import entity.Flame;
 import entity.enemy.Enemy;
 import input.KeyListener;
 import javafx.animation.AnimationTimer;
@@ -59,6 +60,12 @@ public class Game extends Application {
         bomberPos.update();
         portalPos.update();
 
+        if (!flamePos.isEmpty()) {
+            for (Flame flame : flamePos) {
+                flame.update();
+            }
+        }
+
         if (!enemyPos.isEmpty()) {
             for (Enemy enemy : enemyPos) {
                 enemy.update();
@@ -99,6 +106,12 @@ public class Game extends Application {
         for (int i = 0; i < bomberPos.getMaxBomb(); i++) {
             if (bomberPos.getBomb()[i] != null) {
                 bomberPos.getBomb()[i].render(gc);
+            }
+        }
+
+        if (!flamePos.isEmpty()) {
+            for (Flame flame : flamePos) {
+                flame.render(gc);
             }
         }
 

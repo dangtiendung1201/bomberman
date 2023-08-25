@@ -3,6 +3,7 @@ package core;
 import java.util.ArrayList;
 import java.util.List;
 
+import entity.Flame;
 import entity.Portal;
 import entity.character.Bomber;
 import entity.enemy.Enemy;
@@ -64,6 +65,7 @@ public class Const {
     public static Grass[][] grassPos;
     public static Brick[][] brickPos;
     public static List<Enemy> enemyPos = new ArrayList<>();
+    public static List<Flame> flamePos = new ArrayList<>(); 
 
     public static Item[][] itemPos;
     public static int ITEM_MAX;
