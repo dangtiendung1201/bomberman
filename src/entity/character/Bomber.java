@@ -124,12 +124,6 @@ public class Bomber extends Character {
             bomb[cntBomb] = new Bomb((double) actualX, (double) actualY, bombImage);
             bomb[cntBomb].update();
             cntBomb++;
-
-            Platform.runLater(() -> {
-                flamePos.clear();
-                cntBomb--;
-                bomb[cntBomb] = null;
-            });
         }
     }
 
@@ -163,7 +157,8 @@ public class Bomber extends Character {
                 isMoving = true;
                 x -= speed;
             }
-        } else if (keyListener.isPressed(KeyCode.DOWN)) {
+        }
+        if (keyListener.isPressed(KeyCode.DOWN)) {
             setDirection(DIRECTION.DOWN);
             cur = (cur + 1) % 3 + 3;
 
@@ -171,7 +166,8 @@ public class Bomber extends Character {
                 isMoving = true;
                 x += speed;
             }
-        } else if (keyListener.isPressed(KeyCode.LEFT)) {
+        }
+        if (keyListener.isPressed(KeyCode.LEFT)) {
             setDirection(DIRECTION.LEFT);
             cur = (cur + 1) % 3 + 6;
 
@@ -179,7 +175,8 @@ public class Bomber extends Character {
                 isMoving = true;
                 y -= speed;
             }
-        } else if (keyListener.isPressed(KeyCode.RIGHT)) {
+        }
+        if (keyListener.isPressed(KeyCode.RIGHT)) {
             setDirection(DIRECTION.RIGHT);
             cur = (cur + 1) % 3 + 9;
 
@@ -187,9 +184,17 @@ public class Bomber extends Character {
                 isMoving = true;
                 y += speed;
             }
-        } else if (keyListener.isPressed(KeyCode.SPACE)) {
+        }
+        if (keyListener.isPressed(KeyCode.SPACE)) {
             placeBomb();
-        } else if (keyListener.isReleased()) {
+
+            Platform.runLater(() -> {
+                flamePos.clear();
+                cntBomb--;
+                bomb[cntBomb] = null;
+            });
+        }
+        if (keyListener.isReleased()) {
             isMoving = false;
             cur = 0;
         }

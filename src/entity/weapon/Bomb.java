@@ -35,6 +35,12 @@ public class Bomb extends Weapon {
                 break;
             }
 
+            if (flame.isEnemy())
+            {
+                flamePos.add(flame);
+                break;
+            }
+
             flamePos.add(flame);
         }
 

@@ -37,8 +37,13 @@ public class Flame extends Entity {
         return false;
     }
 
-    public void update() {
-  
+    public boolean isEnemy() {
+        // for (int)
+        return false;
     }
 
+    public void update() {
+        // TODO Auto-generated method stub
+
+    }
 }
