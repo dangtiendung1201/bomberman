@@ -104,7 +104,7 @@ public class Bomber extends Character {
             int actualY = (int) y;
 
             for (Bomb bomb : bombPos) {
-                if ((int)bomb.getX() == actualX && (int)bomb.getY() == actualY)
+                if ((int) bomb.getX() == actualX && (int) bomb.getY() == actualY)
                     return true;
             }
 
@@ -115,11 +115,28 @@ public class Bomber extends Character {
 
     private void placeBomb() {
         if (cntBomb < maxBomb) {
-            int actualX = (int) x;
-            int actualY = (int) y;
+            int actualX;
+            int actualY;
+
+            if (direction == DIRECTION.UP) {
+                actualX = (int) x + 1;
+                actualY = (int) y;
+            } else if (direction == DIRECTION.DOWN) {
+                actualX = (int) x;
+                actualY = (int) y;
+            } else if (direction == DIRECTION.LEFT) {
+                actualX = (int) x;
+                actualY = (int) y + 1;
+            } else if (direction == DIRECTION.RIGHT) {
+                actualX = (int) x;
+                actualY = (int) y;
+            } else {
+                actualX = (int) Math.round(x);
+                actualY = (int) Math.round(y);
+            }
 
             for (Bomb bomb : bombPos) {
-                if ((int)bomb.getX() == actualX && (int)bomb.getY() == actualY)
+                if ((int) bomb.getX() == actualX && (int) bomb.getY() == actualY)
                     return;
             }
 
@@ -188,12 +205,15 @@ public class Bomber extends Character {
                 y += speed;
             }
         }
-        if (keyListener.isPressed(KeyCode.SPACE)) {
-            placeBomb();
-        }
+
         if (keyListener.isReleased()) {
+            direction = DIRECTION.STAND;
             isMoving = false;
             cur = 0;
+        }
+
+        if (keyListener.isPressed(KeyCode.SPACE)) {
+            placeBomb();
         }
 
         checkItem();

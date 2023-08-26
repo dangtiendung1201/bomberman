@@ -32,7 +32,7 @@ public class Game extends Application {
         Group root = new Group();
         Scene scene = new Scene(root);
 
-        menuSound.play();
+        // menuSound.play();
 
         buttonPlayer.setOnAction(e -> {
             gameState = STATE.PLAYER;
