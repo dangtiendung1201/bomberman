@@ -3,6 +3,8 @@ package entity.weapon;
 import static core.Const.*;
 import static graphic.Sprite.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -12,6 +14,7 @@ import entity.Flame;
 
 public class Bomb extends Weapon {
     private int timer = 0;
+    private List<Flame> flamePos = new ArrayList<>();
 
     public Bomb(double x, double y) {
         super(x, y);
@@ -19,6 +22,10 @@ public class Bomb extends Weapon {
 
     public Bomb(double x, double y, Sprite[] sprite) {
         super(x, y, sprite);
+    }
+
+    public List<Flame> getFlamePos() {
+        return flamePos;
     }
 
     public void update() {

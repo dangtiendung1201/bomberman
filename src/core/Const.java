@@ -67,8 +67,6 @@ public class Const {
     public static Brick[][] brickPos;
     public static List<Enemy> enemyPos = new ArrayList<>();
     public static List<Bomb> bombPos = new ArrayList<>();
-    public static List<Flame> flamePos = new ArrayList<>();
-
 
     public static Item[][] itemPos;
     public static int ITEM_MAX;

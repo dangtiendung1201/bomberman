@@ -5,6 +5,7 @@ import static graphic.UserInterfere.*;
 import map.*;
 
 import java.io.FileNotFoundException;
+import java.util.List;
 
 import core.Const.STATE;
 import entity.Flame;
@@ -61,12 +62,6 @@ public class Game extends Application {
         bomberPos.update();
         portalPos.update();
 
-        if (!flamePos.isEmpty()) {
-            for (Flame flame : flamePos) {
-                flame.update();
-            }
-        }
-
         if (!bombPos.isEmpty()) {
             for (Bomb bomb : bombPos) {
                 bomb.update();
@@ -112,11 +107,12 @@ public class Game extends Application {
 
         for (Bomb bomb : bombPos) {
             bomb.render(gc);
-        }
 
-        if (!flamePos.isEmpty()) {
-            for (Flame flame : flamePos) {
-                flame.render(gc);
+            List<Flame> flamePos = bomb.getFlamePos();
+            if (!flamePos.isEmpty()) {
+                for (Flame flame : flamePos) {
+                    flame.render(gc);
+                }
             }
         }
 
@@ -133,7 +129,7 @@ public class Game extends Application {
             gameState = STATE.EXIT;
             gameLoop(stage);
         });
-        
+
         stage.setTitle("Player");
         Map map = null;
 
