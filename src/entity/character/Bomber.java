@@ -3,9 +3,6 @@ package entity.character;
 import static core.Const.*;
 import static graphic.Sprite.*;
 
-import java.sql.Time;
-import java.util.Timer;
-
 import core.Const.DIRECTION;
 import entity.enemy.Enemy;
 import entity.item.BombsItem;

@@ -4,6 +4,8 @@ import static core.Const.*;
 import graphic.Sprite;
 
 public class Flame extends Entity {
+    private int step = 0;
+
     public Flame(double x, double y) {
         super(x, y);
     }
@@ -43,7 +45,13 @@ public class Flame extends Entity {
     }
 
     public void update() {
-        // TODO Auto-generated method stub
-
+        step++;
+        if (step > 3) {
+            step = 0;
+            cur -= 3;
+        } else {
+            cur++;
+            step++;
+        }
     }
 }

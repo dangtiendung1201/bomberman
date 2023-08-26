@@ -3,7 +3,6 @@ package core;
 import java.util.ArrayList;
 import java.util.List;
 
-import entity.Flame;
 import entity.Portal;
 import entity.character.Bomber;
 import entity.enemy.Enemy;

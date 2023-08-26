@@ -15,6 +15,7 @@ import entity.Flame;
 public class Bomb extends Weapon {
     private int timer = 0;
     private List<Flame> flamePos = new ArrayList<>();
+    private Timer bombTimer = new Timer();
 
     public Bomb(double x, double y) {
         super(x, y);
@@ -34,7 +35,6 @@ public class Bomb extends Weapon {
         if (timer == 50) {
             Platform.runLater(() -> {
                 int size = bomberPos.getFlameSize();
-                size = 2;
 
                 int centerX = (int) x;
                 int centerY = (int) y;
@@ -99,17 +99,19 @@ public class Bomb extends Weapon {
 
                     flamePos.add(flame);
                 }
-                Timer bombTimer = new Timer();
                 bombTimer.schedule(new TimerTask() {
                     @Override
                     public void run() {
+                        for (Flame flame : flamePos) {
+                            flame.update();
+                        }
                     }
                 }, 10);
-                bombTimer.cancel();
             });
         }
         if (timer == 60) {
             Platform.runLater(() -> {
+                bombTimer.cancel();
                 flamePos.clear();
                 bomberPos.reduceBomb();
                 bombPos.remove(this);

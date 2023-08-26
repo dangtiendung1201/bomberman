@@ -32,7 +32,7 @@ public class Game extends Application {
         Group root = new Group();
         Scene scene = new Scene(root);
 
-        // menuSound.play();
+        menuSound.play();
 
         buttonPlayer.setOnAction(e -> {
             gameState = STATE.PLAYER;
@@ -125,6 +125,7 @@ public class Game extends Application {
     }
 
     private void player(Stage stage) {
+        loadGame();
         stage.setOnCloseRequest(e -> {
             gameState = STATE.EXIT;
             gameLoop(stage);
@@ -235,7 +236,6 @@ public class Game extends Application {
 
     private void loadAssets() {
         loadMenu();
-        loadPlay();
     }
 
     @Override
