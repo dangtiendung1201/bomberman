@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 
 import core.Const.STATE;
 import entity.Flame;
+import entity.weapon.Bomb;
 import entity.enemy.Enemy;
 import input.KeyListener;
 import javafx.animation.AnimationTimer;
@@ -66,6 +67,12 @@ public class Game extends Application {
             }
         }
 
+        if (!bombPos.isEmpty()) {
+            for (Bomb bomb : bombPos) {
+                bomb.update();
+            }
+        }
+
         if (!enemyPos.isEmpty()) {
             for (Enemy enemy : enemyPos) {
                 enemy.update();
@@ -103,10 +110,8 @@ public class Game extends Application {
             }
         }
 
-        for (int i = 0; i < bomberPos.getMaxBomb(); i++) {
-            if (bomberPos.getBomb()[i] != null) {
-                bomberPos.getBomb()[i].render(gc);
-            }
+        for (Bomb bomb : bombPos) {
+            bomb.render(gc);
         }
 
         if (!flamePos.isEmpty()) {
@@ -124,7 +129,11 @@ public class Game extends Application {
     }
 
     private void player(Stage stage) {
-
+        stage.setOnCloseRequest(e -> {
+            gameState = STATE.EXIT;
+            gameLoop(stage);
+        });
+        
         stage.setTitle("Player");
         Map map = null;
 

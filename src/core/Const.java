@@ -11,6 +11,7 @@ import entity.item.Item;
 import entity.tile.Brick;
 import entity.tile.Grass;
 import entity.tile.Wall;
+import entity.weapon.Bomb;
 
 public class Const {
     public static int WIDTH = 1200;
@@ -65,7 +66,9 @@ public class Const {
     public static Grass[][] grassPos;
     public static Brick[][] brickPos;
     public static List<Enemy> enemyPos = new ArrayList<>();
-    public static List<Flame> flamePos = new ArrayList<>(); 
+    public static List<Bomb> bombPos = new ArrayList<>();
+    public static List<Flame> flamePos = new ArrayList<>();
+
 
     public static Item[][] itemPos;
     public static int ITEM_MAX;

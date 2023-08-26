@@ -16,14 +16,13 @@ import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 
 public class Bomber extends Character {
-    private int bombTime = 50;
     private boolean isDead = false;
     private double speed = 0.25;
     private boolean bombPass = false;
 
     private int maxBomb = 1;
     private int cntBomb = 0;
-    private Bomb[] bomb = new Bomb[BOMBSITEM_MAX + 1];
+
     private int flameSize = 1;
 
     public Bomber(double x, double y) {
@@ -44,10 +43,6 @@ public class Bomber extends Character {
         return maxBomb;
     }
 
-    public Bomb[] getBomb() {
-        return bomb;
-    }
-
     public int getFlameSize() {
         return flameSize;
     }
@@ -58,6 +53,10 @@ public class Bomber extends Character {
 
     public void setFlameSize(int flameSize) {
         this.flameSize = flameSize;
+    }
+
+    public void reduceBomb() {
+        cntBomb--;
     }
 
     private boolean isValid(double x, double y) {
@@ -104,8 +103,8 @@ public class Bomber extends Character {
             int actualX = (int) x;
             int actualY = (int) y;
 
-            for (int i = 0; i < maxBomb; i++) {
-                if (bomb[i] != null && (int) bomb[i].getX() == actualX && (int) bomb[i].getY() == actualY)
+            for (Bomb bomb : bombPos) {
+                if ((int)bomb.getX() == actualX && (int)bomb.getY() == actualY)
                     return true;
             }
 
@@ -119,20 +118,14 @@ public class Bomber extends Character {
             int actualX = (int) x;
             int actualY = (int) y;
 
-            for (int i = 0; i < maxBomb; i++) {
-                if (bomb[i] != null && (int) bomb[i].getX() == actualX && (int) bomb[i].getY() == actualY) {
+            for (Bomb bomb : bombPos) {
+                if ((int)bomb.getX() == actualX && (int)bomb.getY() == actualY)
                     return;
-                }
             }
 
-            bomb[cntBomb] = new Bomb((double) actualX, (double) actualY, bombImage);
-            bomb[cntBomb].update();
-            cntBomb++;
-
             Platform.runLater(() -> {
-                flamePos.clear();
-                cntBomb--;
-                bomb[cntBomb] = null;
+                bombPos.add(new Bomb(actualX, actualY, bombImage));
+                cntBomb++;
             });
         }
     }
