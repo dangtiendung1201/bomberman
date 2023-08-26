@@ -3,9 +3,6 @@ package entity.character;
 import static core.Const.*;
 import static graphic.Sprite.*;
 
-import java.sql.Time;
-import java.util.Timer;
-
 import core.Const.DIRECTION;
 import entity.enemy.Enemy;
 import entity.item.BombsItem;
@@ -16,14 +13,13 @@ import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 
 public class Bomber extends Character {
-    private int bombTime = 50;
     private boolean isDead = false;
     private double speed = 0.25;
     private boolean bombPass = false;
 
     private int maxBomb = 1;
     private int cntBomb = 0;
-    private Bomb[] bomb = new Bomb[BOMBSITEM_MAX + 1];
+
     private int flameSize = 1;
 
     public Bomber(double x, double y) {
@@ -44,10 +40,6 @@ public class Bomber extends Character {
         return maxBomb;
     }
 
-    public Bomb[] getBomb() {
-        return bomb;
-    }
-
     public int getFlameSize() {
         return flameSize;
     }
@@ -58,6 +50,10 @@ public class Bomber extends Character {
 
     public void setFlameSize(int flameSize) {
         this.flameSize = flameSize;
+    }
+
+    public void reduceBomb() {
+        cntBomb--;
     }
 
     private boolean isValid(double x, double y) {
@@ -104,8 +100,8 @@ public class Bomber extends Character {
             int actualX = (int) x;
             int actualY = (int) y;
 
-            for (int i = 0; i < maxBomb; i++) {
-                if (bomb[i] != null && (int) bomb[i].getX() == actualX && (int) bomb[i].getY() == actualY)
+            for (Bomb bomb : bombPos) {
+                if ((int) bomb.getX() == actualX && (int) bomb.getY() == actualY)
                     return true;
             }
 
@@ -116,23 +112,34 @@ public class Bomber extends Character {
 
     private void placeBomb() {
         if (cntBomb < maxBomb) {
-            int actualX = (int) x;
-            int actualY = (int) y;
+            int actualX;
+            int actualY;
 
-            for (int i = 0; i < maxBomb; i++) {
-                if (bomb[i] != null && (int) bomb[i].getX() == actualX && (int) bomb[i].getY() == actualY) {
-                    return;
-                }
+            if (direction == DIRECTION.UP) {
+                actualX = (int) x + 1;
+                actualY = (int) y;
+            } else if (direction == DIRECTION.DOWN) {
+                actualX = (int) x;
+                actualY = (int) y;
+            } else if (direction == DIRECTION.LEFT) {
+                actualX = (int) x;
+                actualY = (int) y + 1;
+            } else if (direction == DIRECTION.RIGHT) {
+                actualX = (int) x;
+                actualY = (int) y;
+            } else {
+                actualX = (int) Math.round(x);
+                actualY = (int) Math.round(y);
             }
 
-            bomb[cntBomb] = new Bomb((double) actualX, (double) actualY, bombImage);
-            bomb[cntBomb].update();
-            cntBomb++;
+            for (Bomb bomb : bombPos) {
+                if ((int) bomb.getX() == actualX && (int) bomb.getY() == actualY)
+                    return;
+            }
 
             Platform.runLater(() -> {
-                flamePos.clear();
-                cntBomb--;
-                bomb[cntBomb] = null;
+                bombPos.add(new Bomb(actualX, actualY, bombImage));
+                cntBomb++;
             });
         }
     }
@@ -195,12 +202,15 @@ public class Bomber extends Character {
                 y += speed;
             }
         }
-        if (keyListener.isPressed(KeyCode.SPACE)) {
-            placeBomb();
-        }
+
         if (keyListener.isReleased()) {
+            direction = DIRECTION.STAND;
             isMoving = false;
             cur = 0;
+        }
+
+        if (keyListener.isPressed(KeyCode.SPACE)) {
+            placeBomb();
         }
 
         checkItem();

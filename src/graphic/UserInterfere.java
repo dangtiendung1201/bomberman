@@ -54,8 +54,7 @@ public class UserInterfere {
         menuSound.setLoop(true);
     }
 
-    public static void loadPlay() {
+    public static void loadGame() {
         menuSound.stop();
     }
-
 }

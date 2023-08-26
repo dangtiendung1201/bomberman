@@ -3,6 +3,7 @@ package entity.enemy;
 import static core.Const.*;
 
 import core.Const.DIRECTION;
+import entity.weapon.Bomb;
 import graphic.Sprite;
 
 public class Balloom extends Enemy {
@@ -75,8 +76,8 @@ public class Balloom extends Enemy {
             int actualX = (int) x;
             int actualY = (int) y;
 
-            for (int i = 0; i < bomberPos.getMaxBomb(); i++) {
-                if (bomberPos.getBomb()[i] != null && (int) bomberPos.getBomb()[i].getX() == actualX && (int) bomberPos.getBomb()[i].getY() == actualY)
+            for (Bomb bomb : bombPos) {
+                if ((int) bomb.getX() == actualX && (int) bomb.getY() == actualY)
                     return true;
             }
 
