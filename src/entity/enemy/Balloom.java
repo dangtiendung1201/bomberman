@@ -9,7 +9,7 @@ import graphic.Sprite;
 public class Balloom extends Enemy {
     public Balloom(double x, double y) {
         super(x, y);
-        speed = 0.25;
+        speed = 0.0625;
         wallPass = false;
         direction = DIRECTION.RIGHT;
         isDead = false;
@@ -17,7 +17,7 @@ public class Balloom extends Enemy {
 
     public Balloom(double x, double y, Sprite[] sprite) {
         super(x, y, sprite);
-        speed = 0.25;
+        speed = 0.0625;
         wallPass = false;
         direction = DIRECTION.RIGHT;
         isDead = false;
@@ -108,9 +108,6 @@ public class Balloom extends Enemy {
 
         if (isBomber()) {
             bomberPos.setDead(true);
-            // Platform.runLater(() -> {
-            // enemyPos.remove(this);
-            // });
         }
 
         if (isDead) {

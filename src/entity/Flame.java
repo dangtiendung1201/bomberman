@@ -1,6 +1,8 @@
 package entity;
 
 import static core.Const.*;
+
+import entity.enemy.Enemy;
 import graphic.Sprite;
 
 public class Flame extends Entity {
@@ -39,9 +41,18 @@ public class Flame extends Entity {
         return false;
     }
 
-    public boolean isEnemy() {
-        // for (int)
-        return false;
+    public void isEnemy() {
+        for (Enemy enemy : enemyPos) {
+            if (checkIntersect(enemy)) {
+                enemy.setDead();
+            }
+        }
+    }
+
+    public void isBomber() {
+        if (checkIntersect(bomberPos)) {
+            bomberPos.setDead(true);
+        }
     }
 
     public void update() {
@@ -53,5 +64,6 @@ public class Flame extends Entity {
             cur++;
             step++;
         }
+        System.out.println(cur);
     }
 }

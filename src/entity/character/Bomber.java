@@ -222,6 +222,6 @@ public class Bomber extends Character {
             cur = 12;
         }
         // System.out.println("x: " + x + " y: " + y);
-        // System.out.println("maxBomb: " + maxBomb);
+        // System.out.println(cur);
     }
 }

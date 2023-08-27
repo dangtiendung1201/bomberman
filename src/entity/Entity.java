@@ -1,6 +1,7 @@
 package entity;
 
 import static core.Const.*;
+
 import graphic.Sprite;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -13,13 +14,11 @@ public abstract class Entity {
     public Entity(double x, double y) {
         this.x = x;
         this.y = y;
-        cur = 0;
     }
 
     public Entity(double x, double y, Sprite[] sprite) {
         this.x = x;
         this.y = y;
-        cur = 0;
         this.sprite = sprite;
     }
 

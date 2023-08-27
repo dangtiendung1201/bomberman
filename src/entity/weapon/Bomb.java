@@ -31,7 +31,7 @@ public class Bomb extends Weapon {
 
     public void update() {
         timer++;
-        System.out.println(timer);
+        // System.out.println(timer);
         if (timer == 50) {
             Platform.runLater(() -> {
                 int size = bomberPos.getFlameSize();
@@ -46,11 +46,6 @@ public class Bomb extends Weapon {
                         break;
 
                     if (flame.isBrick()) {
-                        flamePos.add(flame);
-                        break;
-                    }
-
-                    if (flame.isEnemy()) {
                         flamePos.add(flame);
                         break;
                     }
@@ -104,6 +99,16 @@ public class Bomb extends Weapon {
                     public void run() {
                         for (Flame flame : flamePos) {
                             flame.update();
+                        }
+
+                        for (Flame flame : flamePos) {
+                            if (flame.isBrick()) {
+                                brickPos[(int) flame.getX()][(int) flame.getY()] = null;
+                            }
+                            
+                            flame.isEnemy();
+
+                            flame.isBomber();
                         }
                     }
                 }, 10);
