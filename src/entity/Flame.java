@@ -4,6 +4,7 @@ import static core.Const.*;
 
 import entity.enemy.Enemy;
 import graphic.Sprite;
+import javafx.application.Platform;
 
 public class Flame extends Entity {
     private int step = 0;
@@ -50,8 +51,9 @@ public class Flame extends Entity {
     }
 
     public void isBomber() {
-        if (checkIntersect(bomberPos)) {
-            bomberPos.setDead(true);
+        if (checkIntersect(bomberPos) && !bomberPos.getFlamePass()) {
+            bomberPos.setCur(12);
+            bomberPos.reset();
         }
     }
 

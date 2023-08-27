@@ -58,6 +58,23 @@ public class Game extends Application {
         stage.show();
     }
 
+    private void gameOver(Stage stage) {
+        stage.setTitle("Game Over");
+
+        Group root = new Group();
+        Scene scene = new Scene(root);
+
+        // black background
+        Canvas canvas = new Canvas(WIDTH, HEIGHT);
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.setFill(Color.BLACK);
+        gc.fillRect(0, 0, WIDTH, HEIGHT);
+        root.getChildren().add(canvas);
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
     private void update() {
         bomberPos.update();
         portalPos.update();
@@ -174,6 +191,11 @@ public class Game extends Application {
 
                 update();
                 render(gc);
+
+                if (gameState == STATE.GAMEOVER) {
+                    this.stop();
+                    gameOver(stage);
+                }
 
                 long frameTime = System.nanoTime() - frameStart;
                 // System.out.println(frameTime);

@@ -4,7 +4,7 @@ import static core.Const.*;
 import graphic.Sprite;
 
 public class Portal extends Entity {
-    private boolean isVisible = false;
+    private boolean isOpen = false;
 
     public Portal(double x, double y) {
         super(x, y);
@@ -14,17 +14,17 @@ public class Portal extends Entity {
         super(x, y, sprite);
     }
 
-    public void setVisible(boolean isVisible) {
-        this.isVisible = isVisible;
+    public void setVisible(boolean isOpen) {
+        this.isOpen = isOpen;
     }
 
-    public boolean isVisible() {
-        return isVisible;
+    public boolean isOpen() {
+        return isOpen;
     }
 
     public void update() {
-        if (brickPos[(int) x][(int) y] == null) {
-            isVisible = true;
+        if (brickPos[(int) x][(int) y] == null && enemyPos.isEmpty()) {
+            isOpen = true;
         }
     }
 }

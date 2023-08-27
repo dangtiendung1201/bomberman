@@ -9,9 +9,6 @@ public abstract class Enemy extends Entity {
     protected boolean wallPass;
     protected DIRECTION direction;
     protected double speed;
-    protected boolean moving;
-    protected boolean bombPass;
-    protected boolean isDead;
 
     public Enemy(double x, double y) {
         super(x, y);
@@ -22,7 +19,6 @@ public abstract class Enemy extends Entity {
     }
 
     public void setDead() {
-        isDead = true;
         cur = 6;
         Platform.runLater(() -> {
             enemyPos.remove(this);

@@ -13,9 +13,10 @@ import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 
 public class Bomber extends Character {
-    private boolean isDead = false;
-    private double speed = 0.25;
+    private boolean protectedState = true;
+
     private boolean bombPass = false;
+    private boolean flamePass = false;
 
     private int maxBomb = 1;
     private int cntBomb = 0;
@@ -24,12 +25,14 @@ public class Bomber extends Character {
 
     public Bomber(double x, double y) {
         super(x, y);
-        isMoving = false;
     }
 
     public Bomber(double x, double y, Sprite[] sprite, KeyListener keyListener) {
         super(x, y, sprite, keyListener);
-        isMoving = false;
+    }
+
+    public boolean getProtectedState() {
+        return protectedState;
     }
 
     public int getCntBomb() {
@@ -44,8 +47,8 @@ public class Bomber extends Character {
         return flameSize;
     }
 
-    public void setDead(boolean isDead) {
-        this.isDead = isDead;
+    public boolean getFlamePass() {
+        return flamePass;
     }
 
     public void setFlameSize(int flameSize) {
@@ -54,6 +57,20 @@ public class Bomber extends Character {
 
     public void reduceBomb() {
         cntBomb--;
+    }
+
+    public void reset() {
+        life--;
+
+        if (life == 0) {
+            gameState = STATE.GAMEOVER;
+        } else {
+            x = 1;
+            y = 1;
+
+            protectedState = true;
+
+        }
     }
 
     private boolean isValid(double x, double y) {
@@ -167,61 +184,59 @@ public class Bomber extends Character {
 
     public void update() {
         if (keyListener.isPressed(KeyCode.UP)) {
+            protectedState = false;
             setDirection(DIRECTION.UP);
             cur = (cur + 1) % 3;
 
             if (isValid(x - speed, y) && !isWall(x - speed, y) && !isBrick(x - speed, y) && !isBoom(x - speed, y)) {
-                isMoving = true;
                 x -= speed;
             }
         }
         if (keyListener.isPressed(KeyCode.DOWN)) {
+            protectedState = false;
             setDirection(DIRECTION.DOWN);
             cur = (cur + 1) % 3 + 3;
 
             if (isValid(x + speed, y) && !isWall(x + speed, y) && !isBrick(x + speed, y) && !isBoom(x + speed, y)) {
-                isMoving = true;
                 x += speed;
             }
         }
         if (keyListener.isPressed(KeyCode.LEFT)) {
+            protectedState = false;
             setDirection(DIRECTION.LEFT);
             cur = (cur + 1) % 3 + 6;
 
             if (isValid(x, y - speed) && !isWall(x, y - speed) && !isBrick(x, y - speed) && !isBoom(x, y - speed)) {
-                isMoving = true;
                 y -= speed;
             }
         }
         if (keyListener.isPressed(KeyCode.RIGHT)) {
+            protectedState = false;
             setDirection(DIRECTION.RIGHT);
             cur = (cur + 1) % 3 + 9;
 
             if (isValid(x, y + speed) && !isWall(x, y + speed) && !isBrick(x, y + speed) && !isBoom(x, y + speed)) {
-                isMoving = true;
                 y += speed;
             }
         }
 
-        if (keyListener.isReleased()) {
-            direction = DIRECTION.STAND;
-            isMoving = false;
-            cur = 0;
-        }
-
         if (keyListener.isPressed(KeyCode.SPACE)) {
+            protectedState = false;
             placeBomb();
         }
 
-        checkItem();
-        if (isEnemy()) {
-            isDead = true;
+        if (keyListener.isReleased()) {
+            direction = DIRECTION.STAND;
+            cur = 0;
         }
 
-        if (isDead) {
+        checkItem();
+        if (!protectedState && isEnemy()) {
             cur = 12;
+            reset();
         }
+
         // System.out.println("x: " + x + " y: " + y);
-        // System.out.println(cur);
+        System.out.println("life: " + life);
     }
 }

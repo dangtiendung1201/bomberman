@@ -21,6 +21,7 @@ public class Const {
         MENU,
         PLAYER,
         COMPUTER,
+        GAMEOVER,
         EXIT
     }
 
