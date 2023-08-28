@@ -95,6 +95,11 @@ public class Bomb extends Weapon {
 
                     flamePos.add(flame);
                 }
+
+                // CENTER
+                Flame flame = new Flame(centerX, centerY, explosionImage, 18);
+                flamePos.add(flame);
+
                 bombTimer.schedule(new TimerTask() {
                     @Override
                     public void run() {
@@ -106,7 +111,7 @@ public class Bomb extends Weapon {
                             if (flame.isBrick()) {
                                 brickPos[(int) flame.getX()][(int) flame.getY()] = null;
                             }
-                            
+
                             flame.isEnemy();
 
                             flame.isBomber();
