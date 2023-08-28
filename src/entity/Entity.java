@@ -2,8 +2,8 @@ package entity;
 
 import static core.Const.*;
 
-import graphic.Sprite;
 import javafx.scene.canvas.GraphicsContext;
+import media.Sprite;
 
 public abstract class Entity {
     protected double x;

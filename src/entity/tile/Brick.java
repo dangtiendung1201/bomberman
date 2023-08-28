@@ -1,6 +1,6 @@
 package entity.tile;
 
-import graphic.Sprite;
+import media.Sprite;
 
 public class Brick extends Tile {
 

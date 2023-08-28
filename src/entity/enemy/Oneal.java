@@ -3,7 +3,7 @@ package entity.enemy;
 import static core.Const.*;
 import core.Const.DIRECTION;
 import entity.weapon.Bomb;
-import graphic.Sprite;
+import media.Sprite;
 
 public class Oneal extends Enemy {
 

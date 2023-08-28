@@ -4,7 +4,7 @@ import static core.Const.*;
 
 import core.Const.DIRECTION;
 import entity.weapon.Bomb;
-import graphic.Sprite;
+import media.Sprite;
 
 public class Balloom extends Enemy {
     public Balloom(double x, double y) {

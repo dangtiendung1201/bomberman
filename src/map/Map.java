@@ -1,7 +1,7 @@
 package map;
 
 import static core.Const.*;
-import static graphic.Sprite.*;
+import static media.Sprite.*;
 
 import entity.Portal;
 import entity.character.*;

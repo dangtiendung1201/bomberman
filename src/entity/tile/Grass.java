@@ -1,6 +1,6 @@
 package entity.tile;
 
-import graphic.Sprite;
+import media.Sprite;
 
 public class Grass extends Tile {
 

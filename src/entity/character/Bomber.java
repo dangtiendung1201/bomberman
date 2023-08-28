@@ -1,16 +1,17 @@
 package entity.character;
 
 import static core.Const.*;
-import static graphic.Sprite.*;
+import static media.Sprite.*;
+import static media.UserInterfere.*;
 
 import core.Const.DIRECTION;
 import entity.enemy.Enemy;
 import entity.item.BombsItem;
 import entity.weapon.Bomb;
-import graphic.Sprite;
 import input.KeyListener;
 import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
+import media.Sprite;
 
 public class Bomber extends Character {
     private boolean protectedState = true;
@@ -61,6 +62,7 @@ public class Bomber extends Character {
 
     public void reset() {
         life--;
+        bomberDieSound.play();
 
         if (life == 0) {
             gameState = STATE.GAMEOVER;
@@ -154,6 +156,8 @@ public class Bomber extends Character {
                     return;
             }
 
+            placeBombSound.play();
+
             Platform.runLater(() -> {
                 bombPos.add(new Bomb(actualX, actualY, bombImage));
                 cntBomb++;
@@ -177,7 +181,6 @@ public class Bomber extends Character {
 
             if (itemPos[actualX][actualY] instanceof BombsItem) {
                 maxBomb = ((BombsItem) itemPos[actualX][actualY]).update(maxBomb);
-
             }
         }
     }

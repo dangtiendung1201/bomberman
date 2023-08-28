@@ -1,7 +1,7 @@
 package entity.tile;
 
 import entity.Entity;
-import graphic.Sprite;
+import media.Sprite;
 
 public abstract class Tile extends Entity {
     public Tile(double x, double y) {

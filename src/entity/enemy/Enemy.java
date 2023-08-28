@@ -2,8 +2,8 @@ package entity.enemy;
 
 import static core.Const.*;
 import entity.Entity;
-import graphic.Sprite;
 import javafx.application.Platform;
+import media.Sprite;
 
 public abstract class Enemy extends Entity {
     protected boolean wallPass;

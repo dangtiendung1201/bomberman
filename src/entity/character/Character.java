@@ -2,8 +2,8 @@ package entity.character;
 
 import core.Const.DIRECTION;
 import entity.Entity;
-import graphic.Sprite;
 import input.KeyListener;
+import media.Sprite;
 
 public abstract class Character extends Entity {
     protected KeyListener keyListener;

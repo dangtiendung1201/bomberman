@@ -1,7 +1,8 @@
 package core;
 
 import static core.Const.*;
-import static graphic.UserInterfere.*;
+import static media.UserInterfere.*;
+
 import map.*;
 
 import java.io.FileNotFoundException;

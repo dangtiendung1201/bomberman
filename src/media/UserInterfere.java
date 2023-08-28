@@ -1,4 +1,4 @@
-package graphic;
+package media;
 
 import static core.Const.*;
 
@@ -54,7 +54,17 @@ public class UserInterfere {
         menuSound.setLoop(true);
     }
 
+    public static Audio itemSound = new Audio();
+    public static Audio bombSound = new Audio();
+    public static Audio placeBombSound = new Audio();
+    public static Audio bomberDieSound = new Audio();
+
     public static void loadGame() {
         menuSound.stop();
+        itemSound.setPath("res/music/item.wav");
+        bombSound.setPath("res/music/bomb.wav");
+
+        placeBombSound.setPath("res/music/placebomb.wav");
+        bomberDieSound.setPath("res/music/bomberdie.wav");
     }
 }

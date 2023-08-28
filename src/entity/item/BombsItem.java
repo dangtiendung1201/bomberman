@@ -1,7 +1,8 @@
 package entity.item;
 
 import static core.Const.*;
-import graphic.Sprite;
+
+import media.Sprite;
 
 public class BombsItem extends Item {
 
@@ -18,6 +19,7 @@ public class BombsItem extends Item {
     public int update(int maxBomb) {
         maxBomb++;
         itemPos[(int) x][(int) y] = null;
+        playSound();
 
         return maxBomb;
     }

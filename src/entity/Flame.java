@@ -3,7 +3,7 @@ package entity;
 import static core.Const.*;
 
 import entity.enemy.Enemy;
-import graphic.Sprite;
+import media.Sprite;
 
 public class Flame extends Entity {
     private int step = 0;

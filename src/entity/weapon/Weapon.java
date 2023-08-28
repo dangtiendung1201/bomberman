@@ -1,7 +1,7 @@
 package entity.weapon;
 
 import entity.Entity;
-import graphic.Sprite;
+import media.Sprite;
 
 public abstract class Weapon extends Entity {
 

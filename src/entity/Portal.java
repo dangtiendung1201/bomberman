@@ -1,7 +1,8 @@
 package entity;
 
 import static core.Const.*;
-import graphic.Sprite;
+
+import media.Sprite;
 
 public class Portal extends Entity {
     private boolean isOpen = false;

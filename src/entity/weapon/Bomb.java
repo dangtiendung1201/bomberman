@@ -1,15 +1,16 @@
 package entity.weapon;
 
 import static core.Const.*;
-import static graphic.Sprite.*;
+import static media.Sprite.*;
+import static media.UserInterfere.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import graphic.Sprite;
 import javafx.application.Platform;
+import media.Sprite;
 import entity.Flame;
 
 public class Bomb extends Weapon {
@@ -116,6 +117,8 @@ public class Bomb extends Weapon {
 
                             flame.isBomber();
                         }
+
+                        bombSound.play();
                     }
                 }, 10);
             });
