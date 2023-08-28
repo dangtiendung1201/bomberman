@@ -250,6 +250,9 @@ public class Game extends Application {
             case COMPUTER:
                 computer(stage);
                 break;
+            case GAMEOVER:
+                gameOver(stage);
+                break;
             case EXIT:
                 Platform.exit();
                 break;

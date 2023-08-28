@@ -4,7 +4,6 @@ import static core.Const.*;
 
 import entity.enemy.Enemy;
 import graphic.Sprite;
-import javafx.application.Platform;
 
 public class Flame extends Entity {
     private int step = 0;

@@ -30,6 +30,7 @@ public class Bomb extends Weapon {
     }
 
     public void update() {
+        cur = (cur + 1) % 3;
         timer++;
         // System.out.println(timer);
         if (timer == 50) {
