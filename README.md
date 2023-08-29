@@ -1,6 +1,9 @@
+## Inherit tree
+<img src="res/demo.png" alt="Inherit tree" width="800"/>
+
 ## Checklist
 - Gói bắt buộc (+8đ)
-- [ ] Thiết kế cây thừa kế cho các đối tượng game +2đ
+- [x] Thiết kế cây thừa kế cho các đối tượng game +2đ
 - [x] Xây dựng bản đồ màn chơi từ tệp cấu hình (có mẫu tệp cấu hình, xem [tại đây](https://raw.githubusercontent.com/bqcuong/bomberman-starter/starter-2/res/levels/Level1.txt)) +1đ
 - [x] Di chuyển Bomber theo sự điều khiển từ người chơi +1đ
 - [x] Tự động di chuyển các Enemy +1đ
