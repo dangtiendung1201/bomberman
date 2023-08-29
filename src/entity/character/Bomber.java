@@ -5,6 +5,7 @@ import static media.Sprite.*;
 import static media.UserInterfere.*;
 
 import core.Const.DIRECTION;
+import core.Const.STATE;
 import entity.enemy.Enemy;
 import entity.item.BombsItem;
 import entity.weapon.Bomb;
@@ -107,15 +108,11 @@ public class Bomber extends Character {
         return false;
     }
 
-    private boolean checkInt(double num) {
-        return (num - (int) num) == 0;
-    }
-
     private boolean isBoom(double x, double y) {
         if (bombPass)
             return false;
 
-        if (checkInt(x) && checkInt(y)) {
+        if (x - (int)x == 0 && y - (int)y == 0) {
             int actualX = (int) x;
             int actualY = (int) y;
 
@@ -152,7 +149,7 @@ public class Bomber extends Character {
             }
 
             for (Bomb bomb : bombPos) {
-                if ((int) bomb.getX() == actualX && (int) bomb.getY() == actualY)
+                if (this.checkIntersect(bomb))
                     return;
             }
 
@@ -175,12 +172,14 @@ public class Bomber extends Character {
     }
 
     private void checkItem() {
-        if (checkInt(x) && checkInt(y)) {
-            int actualX = (int) x;
-            int actualY = (int) y;
-
-            if (itemPos[actualX][actualY] instanceof BombsItem) {
-                maxBomb = ((BombsItem) itemPos[actualX][actualY]).update(maxBomb);
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (itemPos[i][j] != null && this.checkIntersect(itemPos[i][j])) {
+                    if (itemPos[i][j] instanceof BombsItem) {
+                        maxBomb = ((BombsItem) itemPos[i][j]).update(maxBomb);
+                    }
+                    itemPos[i][j] = null;
+                }
             }
         }
     }

@@ -61,20 +61,12 @@ public class Balloom extends Enemy {
         return false;
     }
 
-    private boolean checkInt(double num) {
-        return (num - (int) num) == 0;
-    }
-
     private boolean isBoom(double x, double y) {
-        if (checkInt(x) && checkInt(y)) {
-            int actualX = (int) x;
-            int actualY = (int) y;
+        Balloom tmpBalloom = new Balloom(x, y);
 
-            for (Bomb bomb : bombPos) {
-                if ((int) bomb.getX() == actualX && (int) bomb.getY() == actualY)
-                    return true;
-            }
-
+        for (Bomb bomb : bombPos) {
+            if (tmpBalloom.checkIntersect(bomb))
+                return true;
         }
 
         return false;
