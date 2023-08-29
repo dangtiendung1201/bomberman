@@ -1,7 +1,31 @@
-## Inherit tree
-<img src="res/demo.png" alt="Inherit tree" width="800"/>
+<h1 align="center">🐈Bomberman🐈</h1>
+
+[![Actions Status](https://github.com/dangtiendung1201/bomberman/workflows/MacOS/badge.svg)](https://github.com/dangtiendung1201/bomberman/actions)
+[![Actions Status](https://github.com/dangtiendung1201/bomberman/workflows/Windows/badge.svg)](https://github.com/dangtiendung1201/bomberman/actions)
+[![Actions Status](https://github.com/dangtiendung1201/bomberman/workflows/Ubuntu/badge.svg)](https://github.com/dangtiendung1201/bomberman/actions)
+
+This is my game project for Orientation Programming at University of Engineering and Technology, Vietnam National University.
+
+# Table of contents
+
+- [Information](#information)
+- [Inheritance tree](#inheritance-tree)
+- [Checklist](#checklist)
+
+## Information
+
+**Name:**  Đặng Tiến Dũng <br />
+**Student ID:** 22026523 <br />
+**Class:** K67J <br />
+**Email:** dangtiendung1201@gmail.com <br />
+**Facebook:** fb.com/dangtiendung1201 <br />
+
+## Inheritance tree
+
+<img src="res/inherit.png" alt="Inherit tree" width="800"/>
 
 ## Checklist
+
 - Gói bắt buộc (+8đ)
 - [x] Thiết kế cây thừa kế cho các đối tượng game +2đ
 - [x] Xây dựng bản đồ màn chơi từ tệp cấu hình (có mẫu tệp cấu hình, xem [tại đây](https://raw.githubusercontent.com/bqcuong/bomberman-starter/starter-2/res/levels/Level1.txt)) +1đ
