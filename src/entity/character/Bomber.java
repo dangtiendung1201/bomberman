@@ -148,15 +148,17 @@ public class Bomber extends Character {
                 actualY = (int) Math.round(y);
             }
 
+            Bomb tmpBomb = new Bomb(actualX, actualY, bombImage);
+
             for (Bomb bomb : bombPos) {
-                if (this.checkIntersect(bomb))
+                if (tmpBomb.checkIntersect(bomb))
                     return;
             }
 
             placeBombSound.play();
 
             Platform.runLater(() -> {
-                bombPos.add(new Bomb(actualX, actualY, bombImage));
+                bombPos.add(tmpBomb);
                 cntBomb++;
             });
         }

@@ -1,4 +1,4 @@
-<h1 align="center">🐈Bomberman🐈</h1>
+<h1 align="center">Bomberman</h1>
 
 [![Actions Status](https://github.com/dangtiendung1201/bomberman/workflows/MacOS/badge.svg)](https://github.com/dangtiendung1201/bomberman/actions)
 [![Actions Status](https://github.com/dangtiendung1201/bomberman/workflows/Windows/badge.svg)](https://github.com/dangtiendung1201/bomberman/actions)
