@@ -6,6 +6,7 @@ import audio.Audio;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class UserInterfere {
@@ -55,12 +56,16 @@ public class UserInterfere {
         menuSound.setLoop(true);
     }
 
+    public static final ImageView backgroundImage = new ImageView(new Image("file:res/background.png"));
+
     public static Audio itemSound = new Audio();
     public static Audio bombSound = new Audio();
     public static Audio placeBombSound = new Audio();
     public static Audio bomberDieSound = new Audio();
 
+    public static Font infoFont = Font.loadFont("file:res/fonts/info.ttf", 30);
     public static Text levelText = new Text();
+    public static Text scoreText = new Text();
 
     public static void loadGame() {
         menuSound.stop();
@@ -70,8 +75,12 @@ public class UserInterfere {
         placeBombSound.setPath("res/music/placebomb.wav");
         bomberDieSound.setPath("res/music/bomberdie.wav");
 
-        levelText.setX(10);
-        levelText.setY(20);
-        levelText.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
+        levelText.setX(20);
+        levelText.setY(45);
+        levelText.setFont(infoFont);
+
+        scoreText.setX(80);
+        scoreText.setY(45);
+        scoreText.setFont(infoFont);
     }
 }

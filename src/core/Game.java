@@ -63,6 +63,7 @@ public class Game extends Application {
         stage.setTitle("Game Over");
         stage.setOnCloseRequest(e -> {
             Platform.exit();
+            System.exit(0);
         });
 
         Group root = new Group();
@@ -148,6 +149,7 @@ public class Game extends Application {
 
     private void renderInfo() {
         levelText.setText("Level: " + lvl);
+        scoreText.setText("Score: " + score);
 
     }
 
@@ -155,6 +157,7 @@ public class Game extends Application {
         loadGame();
         stage.setOnCloseRequest(e -> {
             Platform.exit();
+            System.exit(0);
         });
 
         stage.setTitle("Player");
@@ -175,8 +178,15 @@ public class Game extends Application {
 
         map.init(keyListener);
 
+        backgroundImage.setX(0);
+        backgroundImage.setY(0);
+        backgroundImage.setFitWidth(WIDTH);
+        backgroundImage.setFitHeight(HEIGHT);
+
+        root.getChildren().add(backgroundImage);
         root.getChildren().add(canvas);
         root.getChildren().add(levelText);
+        root.getChildren().add(scoreText);
 
         stage.setScene(scene);
 
@@ -253,6 +263,7 @@ public class Game extends Application {
                 break;
             case EXIT:
                 Platform.exit();
+                System.exit(0);
                 break;
         }
     }
@@ -274,6 +285,7 @@ public class Game extends Application {
                 }
                 if (gameState == STATE.EXIT) {
                     Platform.exit();
+                    System.exit(0);
                 }
             }
         };

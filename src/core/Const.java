@@ -60,6 +60,8 @@ public class Const {
     public static int col;
     public static int numItem;
 
+    public static int score = 0;
+
     public static Wall[][] wallPos;
     public static Portal portalPos;
     public static Bomber bomberPos;

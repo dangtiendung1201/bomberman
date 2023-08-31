@@ -225,7 +225,6 @@ public class Bomber extends Character {
         }
 
         if (keyListener.isPressed(KeyCode.SPACE)) {
-            protectedState = false;
             placeBomb();
         }
 

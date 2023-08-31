@@ -50,7 +50,7 @@ public class Flame extends Entity {
     }
 
     public void isBomber() {
-        if (checkIntersect(bomberPos) && !bomberPos.getFlamePass()) {
+        if (checkIntersect(bomberPos) && !bomberPos.getFlamePass() && !bomberPos.getProtectedState()) {
             bomberPos.setCur(12);
             bomberPos.reset();
         }
