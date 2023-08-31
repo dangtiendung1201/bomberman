@@ -66,6 +66,7 @@ public class UserInterfere {
     public static Font infoFont = Font.loadFont("file:res/fonts/info.ttf", 30);
     public static Text levelText = new Text();
     public static Text scoreText = new Text();
+    public static Text lifeText = new Text();
 
     public static void loadGame() {
         menuSound.stop();
@@ -79,8 +80,12 @@ public class UserInterfere {
         levelText.setY(45);
         levelText.setFont(infoFont);
 
-        scoreText.setX(80);
+        scoreText.setX(WIDTH / 2 - 100);
         scoreText.setY(45);
         scoreText.setFont(infoFont);
+
+        lifeText.setX(WIDTH - 200);
+        lifeText.setY(45);
+        lifeText.setFont(infoFont);
     }
 }

@@ -150,11 +150,11 @@ public class Game extends Application {
     private void renderInfo() {
         levelText.setText("Level: " + lvl);
         scoreText.setText("Score: " + score);
+        lifeText.setText("Life: " + bomberPos.getLife());
 
     }
 
     private void player(Stage stage) {
-        loadGame();
         stage.setOnCloseRequest(e -> {
             Platform.exit();
             System.exit(0);
@@ -169,6 +169,8 @@ public class Game extends Application {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
+        loadGame();
 
         Group root = new Group();
         Scene scene = new Scene(root);
@@ -187,6 +189,7 @@ public class Game extends Application {
         root.getChildren().add(canvas);
         root.getChildren().add(levelText);
         root.getChildren().add(scoreText);
+        root.getChildren().add(lifeText);
 
         stage.setScene(scene);
 

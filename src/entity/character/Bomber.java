@@ -238,8 +238,5 @@ public class Bomber extends Character {
             cur = 12;
             reset();
         }
-
-        // System.out.println("x: " + x + " y: " + y);
-        System.out.println("life: " + life);
     }
 }
