@@ -13,8 +13,8 @@ import entity.tile.Wall;
 import entity.weapon.Bomb;
 
 public class Const {
-    public static int WIDTH = 1200;
-    public static int HEIGHT = 600;
+    public static int WIDTH;
+    public static int HEIGHT;
     public static final String TITLE = "Bomberman";
 
     public enum STATE {

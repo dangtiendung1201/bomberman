@@ -13,16 +13,16 @@ import entity.Flame;
 import entity.weapon.Bomb;
 import entity.enemy.Enemy;
 import input.KeyListener;
-import javafx.animation.AnimationTimer;
-import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.application.Application;
+import javafx.animation.AnimationTimer;
+import javafx.stage.Stage;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 
 public class Game extends Application {
     private boolean loop = true;
@@ -61,6 +61,9 @@ public class Game extends Application {
 
     private void gameOver(Stage stage) {
         stage.setTitle("Game Over");
+        stage.setOnCloseRequest(e -> {
+            Platform.exit();
+        });
 
         Group root = new Group();
         Scene scene = new Scene(root);
@@ -95,6 +98,7 @@ public class Game extends Application {
 
     private void render(GraphicsContext gc) {
         gc.clearRect(0, 0, WIDTH, HEIGHT);
+        renderInfo();
 
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
@@ -142,11 +146,15 @@ public class Game extends Application {
         bomberPos.render(gc);
     }
 
+    private void renderInfo() {
+        levelText.setText("Level: " + lvl);
+
+    }
+
     private void player(Stage stage) {
         loadGame();
         stage.setOnCloseRequest(e -> {
-            gameState = STATE.EXIT;
-            gameLoop(stage);
+            Platform.exit();
         });
 
         stage.setTitle("Player");
@@ -166,21 +174,10 @@ public class Game extends Application {
         KeyListener keyListener = new KeyListener(scene);
 
         map.init(keyListener);
-        // map.print();
-
-        // for (int i = 0; i < row; i++) {
-        // for (int j = 0; j < col; j++) {
-        // if (wallPos[i][j] != null) {
-        // System.out.print("W");
-        // }
-        // else {
-        // System.out.print(" ");
-        // }
-        // }
-        // System.out.println();
-        // }
 
         root.getChildren().add(canvas);
+        root.getChildren().add(levelText);
+
         stage.setScene(scene);
 
         AnimationTimer timer = new AnimationTimer() {
