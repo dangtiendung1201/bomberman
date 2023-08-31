@@ -42,3 +42,8 @@ This is my game project for Orientation Programming at University of Engineering
 - [x] Xử lý hiệu ứng âm thanh (thêm music & sound effects) +1đ
 - [ ] Phát triển hệ thống server-client để nhiều người có thể cùng chơi qua mạng LAN hoặc Internet +1đ
 - [ ] Những ý tưởng khác sẽ được đánh giá và cộng điểm theo mức tương ứng
+
+## Credits
+In this game, I use:
+- [Starter code](https://github.com/bqcuong/bomberman-starter)
+- [Fonts](https://www.fontsaddict.com/font/bomberman.html#google_vignette)

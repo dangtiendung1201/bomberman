@@ -1,3 +1,4 @@
+// Original code: https://github.com/bqcuong/bomberman-starter/blob/starter-2/src/uet/oop/bomberman/graphics/SpriteSheet.java
 package media;
 
 import javax.imageio.ImageIO;

@@ -1,3 +1,4 @@
+// Original code: https://github.com/bqcuong/bomberman-starter/blob/starter-2/src/uet/oop/bomberman/graphics/Sprite.java
 package media;
 
 import javafx.scene.image.*;
